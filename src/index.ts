@@ -1,6 +1,6 @@
 import type { App } from "vue";
-import Button from "./components/Button.vue";
-import Input from "./components/Input.vue";
+import Button from "./components/nued/Button.vue";
+import Input from "./components/nued/Input.vue";
 
 export { Button, Input };
 
