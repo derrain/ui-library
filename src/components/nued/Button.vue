@@ -9,6 +9,7 @@
     :class="[
       'nued-button',
       `nued-button--${size}`,
+      `nued-button--${variant}`,
       { 'nued-button--disabled': disabled }
     ]"
   >
@@ -17,6 +18,8 @@
 </template>
 
 <style lang="scss" scoped>
+  @use "sass:color";
+  @use "sass:list";
   @use '~/assets/colors' as *;
 
   .nued-button {
@@ -41,6 +44,20 @@
     &.nued-button--large {
       font-size: 18px;
       padding: 12px 24px;
+    }
+
+    @each $key, $values in $button-variants {
+      $bg-color: list.nth($values, 1);
+      $text-color: list.nth($values, 2);
+
+      &.nued-button--#{$key} {
+        background: $bg-color;
+        color: $text-color;
+
+        &:hover {
+          background: color.adjust($bg-color, $lightness: -10%);
+        }
+      }
     }
 
     &.nued-button--disabled {

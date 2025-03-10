@@ -7,3 +7,16 @@ $darkgrey-1: #111;
 $darkgrey-2: #222;
 $lightgrey: #c0c0c0;
 $white: #fff;
+
+// Text colors
+$text-dark: $black;
+$text-light: $white;
+
+// Button colors
+$button-variants: (
+  primary: (rgb(0, 150, 255), $text-dark),
+  secondary: (rgb(180, 180, 180), $text-dark),
+  success: (rgb(25, 215, 70), $text-dark),
+  warning: (rgb(255, 175, 0), $text-dark),
+  danger: (rgb(220, 25, 25), $text-light)
+);
