@@ -23,6 +23,7 @@
     top: 0;
     padding: 1rem 1rem .5rem;
     box-sizing: border-box;
+    z-index: 10;
 
     nav {
       width: fit-content;
