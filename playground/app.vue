@@ -18,6 +18,8 @@
   }
 
   body {
+    background: $black;
+
     section {
       padding-bottom: 1rem;
     }

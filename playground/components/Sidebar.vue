@@ -43,8 +43,19 @@
 
   aside {
     background: $darkgrey-1;
+    width: 60px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 62px;
+    transition: width .3s ease;
+    overflow-y: auto;
 
     ul {
+      flex-grow: 1;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -66,6 +77,10 @@
           }
         }
       }
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 250px;
     }
   }
 </style>
