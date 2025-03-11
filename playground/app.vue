@@ -67,6 +67,7 @@
       font-size: 1.2rem;
       font-weight: 400;
       margin-top: 0;
+      line-height: 1.5;
     }
   }
 </style>
