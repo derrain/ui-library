@@ -15,17 +15,24 @@
 
   .main-wrapper {
     height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr;
+    display: flex;
+    flex-direction: column;
 
     main {
-      display: grid;
-      grid-template-columns: 250px 1fr;
+      display: flex;
+      flex: 1;
 
       .container {
         background: $darkgrey-2;
         color: $white;
+        min-width: 0;
+        flex-grow: 1;
+        margin-left: 60px;
         padding: 1.5rem 2rem;
+
+        @media screen and (min-width: 768px) {
+          margin-left: 250px;
+        }
       }
     }
   }
