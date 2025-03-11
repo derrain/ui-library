@@ -96,32 +96,40 @@
     padding: 1rem;
 
     .preview {
+      background: $darkgrey-1;
       min-height: 200px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-grow: 1;
       padding: 1rem;
-      border: 1px solid $darkgrey-1;
+      border: 1px solid $black;
       border-radius: 8px;
     }
 
     .playground-container {
       display: flex;
+      flex-wrap: wrap;
       gap: 1rem;
 
       .controls {
-        background: $lightgrey;
-        width: 250px;
+        background: $darkgrey-1;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
         padding: .75rem;
+        border: 1px solid $black;
         border-radius: 8px;
+        transition: .4s ease all;
 
         .control-group {
+          display: flex;
+          flex-direction: column;
           margin-bottom: .5rem;
 
           label {
             font-weight: 400;
-            display: block;
             margin-bottom: 5px;
           }
 
@@ -131,18 +139,30 @@
             padding: 8px;
             border: 1px solid $darkgrey-1;
             border-radius: 5px;
+            box-sizing: border-box;
           }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media screen and (min-width: 992px) and (max-width: 1199px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media screen and (min-width: 1200px) {
+          grid-template-columns: repeat(5, 1fr);
         }
       }
     }
 
     .documentation {
-      padding: 1rem;
-      border: 1px solid $darkgrey-1;
+      background: $darkgrey-1;
+      border: 1px solid $black;
+      border-radius: 8px;
 
       pre {
-        background: $lightgrey;
-        padding: .5rem;
         border-radius: 5px;
         overflow-x: auto;
       }
