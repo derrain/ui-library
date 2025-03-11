@@ -4,7 +4,7 @@
   import { Button } from '~~/src';
 
   const componentTitle = 'Button';
-  const componentDescription = 'A customisable button.';
+  const componentDescription = 'A customizable button component with different sizes, status variants and the ability to disable.';
 
   const model = ref({
     size: 'medium',
