@@ -10,6 +10,7 @@
   });
 
   const localModel = ref({ ...props.model });
+  
   watch(() => props.model, (newModel) => {
     localModel.value = { ...newModel };
   });
@@ -97,11 +98,14 @@
 
     .preview {
       background: $darkgrey-1;
+      width: 100%;
       min-height: 200px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: stretch;
       flex-grow: 1;
+      gap: 1rem;
       padding: 1rem;
       border: 1px solid $black;
       border-radius: 8px;

@@ -20,3 +20,11 @@ $button-variants: (
   warning: (rgb(255, 175, 0), $text-dark),
   danger: (rgb(220, 25, 25), $text-light)
 );
+
+// Alert colors
+$alert-variants: (
+  info: (rgb(0, 150, 255), $text-dark),
+  success: (rgb(25, 215, 70), $text-dark),
+  warning: (rgb(255, 175, 0), $text-dark),
+  danger: (rgb(220, 25, 25), $text-dark)
+);

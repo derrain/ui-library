@@ -1,7 +1,7 @@
 <script setup>
   import { ref } from 'vue';
   import PlaygroundWrapper from '~/components/PlaygroundWrapper.vue';
-  import { Button } from '~~/src';
+  import Button from '~~/src/components/nued/Button.vue';
 
   const componentTitle = 'Button';
   const componentDescription = 'A customisable button.';
@@ -9,7 +9,7 @@
   const model = ref({
     size: 'medium',
     label: 'Click Me',
-    variant: 'secondary',
+    variant: 'info',
     disabled: false
   });
 
