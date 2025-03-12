@@ -19,9 +19,7 @@
   const alertKey = ref(0);
 
   const showAlert = () => {
-    if (!isAlertVisible) {
-      isAlertVisible.value = true;
-    }
+    isAlertVisible.value = true;
   };
 
   const controls = [

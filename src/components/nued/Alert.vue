@@ -11,9 +11,11 @@
 
   const isAlertVisible = ref(true);
   let dismissTimer: NodeJS.Timeout | null = null;
+  const emit = defineEmits(['dismiss']);
 
   const dismissAlert = () => {
-    isAlertVisible.value = false
+    isAlertVisible.value = false;
+    emit('dismiss');
 
     if (dismissTimer) {
       clearTimeout(dismissTimer);
