@@ -109,6 +109,7 @@
       padding: 1rem;
       border: 1px solid $black;
       border-radius: 8px;
+      box-sizing: border-box;
     }
 
     .playground-container {
