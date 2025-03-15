@@ -41,5 +41,6 @@
     flex-wrap: wrap;
     margin: 0 auto;
     padding: 1rem;
+    box-sizing: border-box;
   }
 </style>
