@@ -98,7 +98,6 @@
 
     .preview {
       background: $darkgrey-1;
-      width: 100%;
       min-height: 200px;
       display: flex;
       flex-direction: column;
