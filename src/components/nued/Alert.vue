@@ -93,7 +93,7 @@
     }
 
     &.dismissible {
-      padding-right: 80px;
+      padding-right: 60px;
     }
 
     .dismissible-btn {
