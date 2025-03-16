@@ -74,10 +74,12 @@
 
   .nued-alert {
     font-weight: 400;
+    width: 100%;
     display: grid;
     position: relative;
     padding: 1rem;
     border-radius: 8px;
+    box-sizing: border-box;
 
     @each $key, $values in $alert-variants {
       $bg-color: list.nth($values, 1);

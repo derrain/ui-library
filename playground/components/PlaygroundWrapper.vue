@@ -103,7 +103,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: stretch;
+      align-items: center;
       flex-grow: 1;
       gap: 1rem;
       padding: 1rem;
