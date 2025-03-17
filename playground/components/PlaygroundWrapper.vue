@@ -102,12 +102,13 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: stretch;
+      align-items: center;
       flex-grow: 1;
       gap: 1rem;
       padding: 1rem;
       border: 1px solid $black;
       border-radius: 8px;
+      box-sizing: border-box;
     }
 
     .playground-container {

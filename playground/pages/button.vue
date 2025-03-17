@@ -9,7 +9,7 @@
   const model = ref({
     size: 'medium',
     label: 'Click Me',
-    variant: 'info',
+    variant: 'secondary',
     disabled: false
   });
 
