@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+  import { ref, watch } from 'vue';
   import type { InputProps } from '~~/src/types/input';
 
   const props = withDefaults(defineProps<InputProps>(), {
@@ -11,11 +12,54 @@
     showLabel: true,
     isRequired: true,
     requiredType: 'danger',
-    requiredText: 'This field is required',
+    requiredText: '',
     disabled: false
   });
 
   const emit = defineEmits(['update:modelValue']);
+
+  const inputValue = ref(props.fieldValue);
+  const errorMessage = ref('');
+
+  const validateInput = () => {
+    const value = inputValue.value?.toString().trim() || '';
+
+    if (!value) {
+      errorMessage.value = props.isRequired ? 'This field is required' : '';
+      return;
+    }
+
+    switch (props.fieldType) {
+      case 'email':
+        errorMessage.value = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : props.requiredText || 'Invalid email format';
+        break;
+      
+      case 'number':
+        errorMessage.value = /^\d+$/.test(value) ? '' : props.requiredText || 'Only numbers are allowed';
+        break;
+
+      case 'tel':
+        errorMessage.value = /^\+?\d{7,15}$/.test(value) ? '' : props.requiredText || 'Invalid phone number';
+        break;
+      
+      case 'date':
+        errorMessage.value = /^\d{4}-\d{2}-\d{2}$/.test(value) ? '' : props.requiredText || 'Invalid date format (mm/dd/yyyy)';
+        break;
+      
+      case 'time':
+        errorMessage.value = /^([01]\d|2[0-3]):([0-5]\d)$/.test(value) ? '' : props.requiredText || 'Invalid time format (HH:mm)';
+        break;
+      
+      default:
+        errorMessage.value = '';
+        break;
+    }
+  };
+
+  watch(inputValue, (newValue) => {
+    emit('update:modelValue', newValue);
+    validateInput();
+  });
 </script>
 
 <template>
@@ -48,14 +92,17 @@
           !props.showLabel ? props.labelText :
           ''
         "
-        :value="props.fieldValue"
+        v-model="inputValue"
         :disabled="props.disabled"
+        @input="validateInput"
+        @blur="validateInput"
       />
     </div>
 
     <span
-      :class="`nued-input--${props.isRequired ?? props.requiredType}`">
-      {{ props.requiredText }}
+      :class="`nued-input--${props.requiredType}`"
+      v-if="errorMessage">
+      {{ errorMessage }}
     </span>
   </div>
 </template>
@@ -69,17 +116,17 @@
     font-size: 1rem;
     display: grid;
 
-    &.nued-input--small {
+    &--small {
       width: calc(100% / 3);
       min-width: 100px;
     }
 
-    &.nued-input--medium {
+    &--medium {
       width: calc(100% / 2);
       min-width: 300px;
     }
 
-    &.nued-input--large {
+    &--large {
       width: 100%;
     }
 
@@ -96,9 +143,11 @@
 
       input {
         font-size: 1rem;
+        width: 100%;
         padding: .75rem 1rem;
         border-radius: 8px;
         border: 0;
+        box-sizing: border-box;
       }
 
       &.nued-input--inline {
@@ -109,7 +158,16 @@
       }
     }
 
-    .nued-input--warning {
+    &--danger,
+    &--warning {
+      margin-top: 10px;
+    }
+
+    &--danger {
+      color: $red;
+    }
+
+    &--warning {
       color: $orange;
     }
   }

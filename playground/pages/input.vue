@@ -16,6 +16,8 @@
     isInline: false,
     showLabel: true,
     isRequired: true,
+    requiredType: 'danger',
+    requiredText: '',
     disabled: false
   });
 
@@ -27,6 +29,8 @@
     { label: 'Inline', type: 'checkbox', model: 'isInline' },
     { label: 'Show Label', type: 'checkbox', model: 'showLabel' },
     { label: 'Required', type: 'checkbox', model: 'isRequired' },
+    { label: 'Required Style', type: 'select', options: [ 'warning', 'danger' ], model: 'requiredType' },
+    { label: 'Required Text', type: 'text', model: 'requiredText' },
     { label: 'Disabled', type: 'checkbox', model: 'disabled' },
   ];
 
@@ -40,6 +44,8 @@
       isInline=false // Toggle between block or inine label and input field. By default, inline is toggled off.
       showLabel=true // Toggle between showing or hiding the label text. By default the label text is visible.
       isRequired=true // Toggle between required and optional input fields. Default is set to true.
+      requiredType='danger' // Choose between 'warning' | 'danger' styles. Default is set to 'danger'.
+      requiredText='This field is required' // Provide a custom error message here.
       disabled=false // Disable the input field. Default is set to false.
     />
   `;
@@ -63,6 +69,8 @@
         :isInline="props.isInline"
         :showLabel="props.showLabel"
         :isRequired="props.isRequired"
+        :requiredType="props.requiredType"
+        :requiredText="props.requiredText"
         :disabled="props.disabled"
       />
 
