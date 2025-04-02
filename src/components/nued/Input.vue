@@ -71,7 +71,7 @@
     <div
       :class="[
         'form-group',
-        `nued-input--${props.isInline && props.fieldSize === 'large' ? 'inline' : undefined}`
+        `nued-input--${props.isInline ? 'inline' : undefined}`
       ]">
       <label
         :for="props.inputId"
@@ -134,6 +134,7 @@
       display: grid;
 
       label {
+        margin-right: 0;
         margin-bottom: 5px;
 
         .nued-input--required {
@@ -148,6 +149,10 @@
         border-radius: 8px;
         border: 0;
         box-sizing: border-box;
+
+        &[type="date"] {
+          font-family: 'Manjari', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
       }
 
       &.nued-input--inline {
@@ -155,6 +160,11 @@
         flex-direction: row;
         flex-grow: 1;
         align-items: center;
+
+        label {
+          margin-right: 1rem;
+          margin-bottom: 0;
+        }
       }
     }
 
