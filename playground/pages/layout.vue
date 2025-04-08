@@ -5,7 +5,7 @@
   import Column from '~~/src/components/nued/Column.vue';
 
   const componentTitle = 'Layout (Row and Column)';
-  const componentDescription = 'A flexible Row & Column layout system supporting both flexbox and CSS grid.';
+  const componentDescription = 'A flexible Row & Column layout system implmented using the CSS flexbox layout.';
 
   const model = ref({
     hAlign: 'center',

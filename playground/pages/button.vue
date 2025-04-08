@@ -4,7 +4,7 @@
   import Button from '~~/src/components/nued/Button.vue';
 
   const componentTitle = 'Button';
-  const componentDescription = 'A customisable button.';
+  const componentDescription = 'A customisable button component offering multiple colour combinations and sizes to suit your website needs.';
 
   const model = ref({
     size: 'medium',
