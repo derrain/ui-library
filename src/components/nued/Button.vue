@@ -1,7 +1,20 @@
 <script lang="ts" setup>
+  import { computed } from 'vue';
   import type { ButtonProps } from '~~/src/types/button';
+  import { generateMarginStyles } from '~~/src/utils/units';
 
-  defineProps<ButtonProps>();
+  const props = withDefaults(defineProps<ButtonProps>(), {
+    size: 'medium',
+    variant: 'secondary',
+    disabled: false,
+    margin: '',
+  });
+
+  const spacingStyles = computed(() => {
+    return generateMarginStyles({
+      margin: props.margin,
+    });
+  });
 </script>
 
 <template>
@@ -12,6 +25,7 @@
       `nued-button--${variant}`,
       { 'nued-button--disabled': disabled }
     ]"
+    :style="spacingStyles"
   >
     <slot />
   </button>

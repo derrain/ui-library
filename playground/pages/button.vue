@@ -10,21 +10,24 @@
     size: 'medium',
     label: 'Click Me',
     variant: 'secondary',
-    disabled: false
+    disabled: false,
+    margin: '',
   });
 
   const controls = [
     { label: 'Size', type: 'select', options: [ 'small', 'medium', 'large' ], model: 'size' },
     { label: 'Label', type: 'text', model: 'label' },
     { label: 'Variant', type: 'select', options: [ 'primary', 'secondary', 'success', 'warning', 'danger' ], model: 'variant' },
-    { label: 'Disabled', type: 'checkbox', model: 'disabled' }
+    { label: 'Disabled', type: 'checkbox', model: 'disabled' },
+    { label: 'Margin (CSS Shorthand)', type: 'text', model: 'margin' },
   ];
 
   const usageCode = `
     <NuedButton
       size='medium' // Choose from 'small' | 'medium' | 'large'. Default is set to 'medium'.
       variant='secondary' // Choose from 'primary' | 'secondary' | 'success' | 'warning' | 'danger'. Default is set to 'secondary'.
-      disabled // Disable the button
+      disabled // Toggle between enabling/disabling the button. Default is false.
+      margin='' // Set to '' by default. i.e. margin="0.5" | margin="2 1 2 1.5".
     >
       Click Me // Label text goes here
     </NuedButton>
@@ -40,7 +43,11 @@
     :usageCode="usageCode"
   >
     <template #default="{ props }">
-      <Button :size="props.size" :variant="props.variant" :disabled="props.disabled">
+      <Button
+        :size="props.size"
+        :variant="props.variant"
+        :disabled="props.disabled"
+        :margin="props.margin">
         {{ props.label }}
       </Button>
     </template>

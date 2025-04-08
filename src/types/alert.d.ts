@@ -1,6 +1,7 @@
 export interface AlertProps {
   variant?: "info" | "success" | "warning" | "danger";
-  dismissible: boolean;
-  autoDismiss: boolean;
-  autoDismissInterval: number;
+  dismissible?: boolean;
+  autoDismiss?: boolean;
+  autoDismissInterval?: number;
+  margin?: string;
 }
