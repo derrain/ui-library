@@ -5,7 +5,7 @@
   import NuedButton from '~~/src/components/nued/Button.vue';
 
   const componentTitle = 'Alert';
-  const componentDescription = 'A customizable alert component with different status variants.';
+  const componentDescription = 'A customisable alert component with different status variants, to display useful information to your users.';
 
   const model = ref({
     label: 'This is a sample alert text!',
