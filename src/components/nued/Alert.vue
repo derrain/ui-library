@@ -1,12 +1,20 @@
 <script lang="ts" setup>
-  import { ref, watch, onMounted, onUnmounted } from 'vue';
+  import { ref, watch, computed, onMounted, onUnmounted } from 'vue';
   import type { AlertProps } from '~~/src/types/alert';
+  import { generateMarginStyles } from '~~/src/utils/units';
 
   const props = withDefaults(defineProps<AlertProps>(), {
     variant: 'info',
     dismissible: false,
     autoDismiss: false,
-    autoDismissInterval: 5000
+    autoDismissInterval: 5000,
+    margin: '',
+  });
+
+  const spacingStyles = computed(() => {
+    return generateMarginStyles({
+      margin: props.margin,
+    });
   });
 
   const isAlertVisible = ref(true);
@@ -23,7 +31,12 @@
   };
 
   const setupAutoDismiss = () => {
-    if (props.autoDismiss) {
+    if (dismissTimer) {
+      clearTimeout(dismissTimer);
+      dismissTimer = null;
+    }
+
+    if (props.autoDismiss && isAlertVisible.value) {
       dismissTimer = setTimeout(() => {
         dismissAlert();
       }, props.autoDismissInterval);
@@ -55,7 +68,9 @@
       'nued-alert',
       `nued-alert--${variant}`,
       `${dismissible ? 'dismissible' : ''}`
-    ]">
+    ]"
+    :style="spacingStyles"
+    >
     <slot />
     <button
       v-if="dismissible"
