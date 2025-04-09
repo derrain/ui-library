@@ -12,6 +12,11 @@ export default defineNuxtConfig({
       prefix: 'Nued',
     }
   ],
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'iconify-icon'
+    }
+  },
   app: {
     rootAttrs: {
       id: 'nued-root'
@@ -21,6 +26,18 @@ export default defineNuxtConfig({
         lang: 'en'
       },
       charset: 'utf-8',
+      script: [
+        { src: 'https://www.googletagmanager.com/gtag/js?id=G-NLWHFPWW39', async: true },
+        {
+          innerHTML: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NLWHFPWW39');
+          `,
+          type: 'text/javascript',
+        }
+      ],
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
@@ -28,5 +45,5 @@ export default defineNuxtConfig({
       ]
     }
   },
-  srcDir: 'playground/'
+  srcDir: 'playground/',
 })

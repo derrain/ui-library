@@ -1,16 +1,18 @@
 import type { App } from "vue";
-import Alert from "./components/nued/Alert.vue";
-import Button from "./components/nued/Button.vue";
-import Input from "./components/nued/Input.vue";
-import Row from "./components/nued/Row.vue";
 
-export { Button, Input, Row };
+const components = import.meta.glob('./components/nued/Nued*.vue', { eager: true });
 
-export default {
-  install: (app: App) => {
-    app.component('Alert', Alert);
-    app.component('Button', Button);
-    app.component('Input', Input);
-    app.component('Row', Row);
+const NuedUI = {
+  install(app: App) {
+    for (const path in components) {
+      const component = (components[path] as any).default;
+
+      if (component?.name && component.name.startsWith('Nued')) {
+        app.component(component.name, component);
+      }
+    }
   }
 };
+
+export default NuedUI;
+export * from "./components";
