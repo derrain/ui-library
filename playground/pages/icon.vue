@@ -25,6 +25,12 @@ const componentDescription = 'A component enabling the use of Phosphor icons fro
     }, 2000);
   }
 
+  const handleKeyPress = (Event, iconName) => {
+    if (Event.key === 'Enter') {
+      copyIconName(iconName);
+    }
+  };
+
   const controls = [
     { label: 'Color', type: 'text', model: 'color' },
     { label: 'Size', type: 'select', options: [ 'small', 'medium', 'large' ], model: 'size' },
@@ -53,7 +59,7 @@ const componentDescription = 'A component enabling the use of Phosphor icons fro
           :key="customName"
           class="icon-item"
           @click="copyIconName(customName)"
-          @mouseenter="copyIconName(customName)"
+          @keypress="handleKeyPress($event, customName)"
           :title="`Click to copy ${customName}`"
           tabindex="0">
           <ClientOnly>
