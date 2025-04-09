@@ -17,11 +17,6 @@ export default defineNuxtConfig({
       isCustomElement: (tag) => tag === 'iconify-icon'
     }
   },
-  runtimeConfig: {
-    public: {
-      gaId: process.env.NUXT_PUBLIC_GA_ID
-    }
-  },
   app: {
     rootAttrs: {
       id: 'nued-root'
@@ -38,5 +33,10 @@ export default defineNuxtConfig({
       ]
     }
   },
-  srcDir: 'playground/'
+  srcDir: 'playground/',
+  runtimeConfig: {
+    public: {
+      gaId: process.env.NUXT_PUBLIC_GA_ID
+    }
+  },
 })
