@@ -4,11 +4,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   components: [
     {
-      path: '~/components',
+      path: './components',
       global: true
     },
     {
-      path: '~/components/nued',
+      path: './components/nued',
       prefix: 'Nued',
     }
   ],
