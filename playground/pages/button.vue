@@ -1,7 +1,7 @@
 <script setup>
   import { ref } from 'vue';
   import PlaygroundWrapper from '~/components/PlaygroundWrapper.vue';
-  import Button from '~~/src/components/nued/Button.vue';
+  import NuedButton from '~~/src/components/nued/NuedButton.vue';
 
   const componentTitle = 'Button';
   const componentDescription = 'A customisable button component offering multiple colour combinations and sizes to suit your website needs.';
@@ -43,13 +43,13 @@
     :usageCode="usageCode"
   >
     <template #default="{ props }">
-      <Button
+      <NuedButton
         :size="props.size"
         :variant="props.variant"
         :disabled="props.disabled"
         :margin="props.margin">
         {{ props.label }}
-      </Button>
+      </NuedButton>
     </template>
   </PlaygroundWrapper>
 </template>
