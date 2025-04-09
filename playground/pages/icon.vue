@@ -5,7 +5,7 @@
   import { useIconConfig } from '~~/src/composables/useIconConfig';
 
 const componentTitle = 'Icon';
-const componentDescription = '';
+const componentDescription = 'A component enabling the use of Phosphor icons from the Iconify Design library.';
 
   const model = ref({
     color: 'inherit',
@@ -53,7 +53,9 @@ const componentDescription = '';
           :key="customName"
           class="icon-item"
           @click="copyIconName(customName)"
-          :title="`Click to copy ${customName}`">
+          @mouseenter="copyIconName(customName)"
+          :title="`Click to copy ${customName}`"
+          tabindex="0">
           <ClientOnly>
             <NuedIcon
               :name="customName"
