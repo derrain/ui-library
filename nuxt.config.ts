@@ -17,6 +17,11 @@ export default defineNuxtConfig({
       isCustomElement: (tag) => tag === 'iconify-icon'
     }
   },
+  runtimeConfig: {
+    public: {
+      gaId: process.env.NUXT_PUBLIC_GA_ID
+    }
+  },
   app: {
     rootAttrs: {
       id: 'nued-root'
