@@ -12,6 +12,11 @@ export default defineNuxtConfig({
       prefix: 'Nued',
     }
   ],
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'iconify-icon'
+    }
+  },
   app: {
     rootAttrs: {
       id: 'nued-root'

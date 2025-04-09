@@ -1,8 +1,8 @@
 <script setup>
   import { ref } from 'vue';
   import PlaygroundWrapper from '~/components/PlaygroundWrapper.vue';
-  import Row from '~~/src/components/nued/Row.vue';
-  import Column from '~~/src/components/nued/Column.vue';
+  import NuedRow from '~~/src/components/nued/NuedRow.vue';
+  import NuedColumn from '~~/src/components/nued/NuedColumn.vue';
 
   const componentTitle = 'Layout (Row and Column)';
   const componentDescription = 'A flexible Row & Column layout system implmented using the CSS flexbox layout.';
@@ -61,21 +61,21 @@
     :usageCode="usageCode"
   >
     <template #default="{ props }">
-      <Row
+      <NuedRow
         :layout="props.layout"
         :hAlign="props.hAlign"
         :vAlign="props.vAlign"
         :rowSize="props.rowSize"
         style="border: 2px solid #666">
         Row
-        <Column
+        <NuedColumn
           v-for="(col, index) in model.columns"
           :key="index"
           :colSize="col.colSize"
           style="border: 2px solid #666">
           Column {{ col.colSize }}
-        </Column>
-      </Row>
+        </NuedColumn>
+      </NuedRow>
     </template>
   </PlaygroundWrapper>
 </template>

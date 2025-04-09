@@ -1,8 +1,8 @@
 <script setup>
   import { ref } from 'vue';
   import PlaygroundWrapper from '~/components/PlaygroundWrapper.vue';
-  import Alert from '~~/src/components/nued/Alert.vue';
-  import NuedButton from '~~/src/components/nued/Button.vue';
+  import NuedAlert from '~~/src/components/nued/NuedAlert.vue';
+  import NuedButton from '~~/src/components/nued/NuedButton.vue';
 
   const componentTitle = 'Alert';
   const componentDescription = 'A customisable alert component with different status variants, to display useful information to your users.';
@@ -57,7 +57,7 @@
         Show Alert
       </NuedButton>
 
-      <Alert
+      <NuedAlert
         v-if="isAlertVisible"
         :key="alertKey"
         :variant="props.variant"
@@ -68,7 +68,7 @@
         :padding="props.padding"
         @dismiss="isAlertVisible = false">
         {{ props.label }}
-      </Alert>
+      </NuedAlert>
     </template>
   </PlaygroundWrapper>
 </template>
