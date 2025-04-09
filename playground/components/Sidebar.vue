@@ -1,9 +1,19 @@
 <script setup>
   import { computed } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
+  import NuedIcon from '~~/src/components/nued/NuedIcon.vue';
 
   const router = useRouter();
   const route = useRoute();
+
+  const routeIcons = {
+    '/': 'home-alt',
+    '/alert': 'alarm-alt',
+    '/button': 'cursor-alt',
+    '/icon': 'star-alt',
+    '/input': 'textbox-alt',
+    '/layout': 'layout-alt'
+  };
 
   // Dynamically get all pages except the 'Home' page
   const componentLinks = computed(() => {
@@ -11,13 +21,14 @@
       .filter(r => r.path !== '/' && r.path !== '/playground')
       .map(r => ({
         name: r.name.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-        path: r.path
+        path: r.path,
+        icon: routeIcons[r.path] || 'question-alt'
       }));
   });
 
   // Manually prepend the 'Home' page as the first item on the sidebar and set to the default page
   const sidebarLinks = computed(() => [
-    { name: 'Home', path: '/' },
+    { name: 'Home', path: '/', icon: routeIcons['/'] || 'home' },
     ...componentLinks.value
   ]);
 </script>
@@ -30,8 +41,12 @@
         :key="link.path">
         <router-link
           :to="link.path"
-          :class="{ active: route.path === link.path }">
-          {{ link.name }}
+          :class="{ active: route.path === link.path }"
+          :title="link.name">
+          <span class="nav-link--item">
+            <span><NuedIcon :name="link.icon" size="medium" /></span>
+            <span>{{ link.name }}</span>
+          </span>
         </router-link>
       </li>
     </ul>
@@ -68,12 +83,22 @@
           font-size: 1.2rem;
           font-weight: 400;
           display: block;
-          padding: 1.5rem 3rem;
+          padding: 1.25rem;
           text-decoration: none;
 
           &.active {
             background: $darkgrey-2;
             color: $primary;
+          }
+
+          .nav-link--item {
+            display: inline-flex;
+            gap: 1rem;
+            align-items: center;
+          }
+
+          @media screen and (min-width: 768px) {
+            padding: 1.5rem 3rem;
           }
         }
       }
