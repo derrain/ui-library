@@ -150,7 +150,8 @@
         border: 0;
         box-sizing: border-box;
 
-        &[type="date"] {
+        &[type="date"],
+        &[type="time"] {
           font-family: 'Manjari', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
       }

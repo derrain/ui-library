@@ -1,8 +1,8 @@
 <script setup>
   import { ref } from 'vue';
   import PlaygroundWrapper from '~/components/PlaygroundWrapper.vue';
-  import Input from '~~/src/components/nued/Input.vue';
-  import NuedButton from '~~/src/components/nued/Button.vue'
+  import NuedInput from '~~/src/components/nued/NuedInput.vue';
+  import NuedButton from '~~/src/components/nued/NuedButton.vue'
 
   const componentTitle = 'Input';
   const componentDescription = 'An input field that can be customised according to type, size and other properties.';
@@ -60,7 +60,7 @@
     :usageCode="usageCode"
   >
     <template #default="{ props }">
-      <Input
+      <NuedInput
         :inputId="props.inputId"
         :fieldType="props.fieldType"
         :labelText="props.labelText"
