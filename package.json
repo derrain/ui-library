@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "dev": "nuxt dev",
-    "build": "vite build --config vite.config.nued.ts",
+    "build": "vite build --config vite.config.nued.ts && nuxt build",
     "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },

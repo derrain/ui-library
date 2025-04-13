@@ -4,10 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
   nitro: {
-    output: {
-      publicDir: './.output/public',
-      serverDir: './.output/server'
-    }
+   preset: 'node'
   },
   components: [
     {
