@@ -1,75 +1,25 @@
-# Nuxt Minimal Starter
+# nued-ui
+A Nuxt 3 based simple UI component library
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Live Demo
+[NUED Demo Page](https://www.nued.design/)
 
-## Setup
+## How to Use
+`npm i nued-ui`
 
-Make sure to install dependencies:
+## Dependencies
+`npm install --save-dev @iconify/vue`
 
-```bash
-# npm
-npm install
+## `Example Usage`
+```
+<script setup>
+  import { NuedIcon } from 'nued-ui';
+</script>
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+<template>
+  <NuedUI name="alarm" size="large" />
+</template>
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## License
+MIT

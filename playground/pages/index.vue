@@ -6,10 +6,6 @@
       name: 'iconify/vue',
       value: 'npm install --save-dev @iconify/vue'
     },
-    {
-      name: 'sass-embedded',
-      value: 'npm i sass-embedded'
-    }
   ];
 
   const copyPkgName = (pkgName) => {
@@ -83,6 +79,16 @@
           @keypress="handleKeyPress($event, 'npm i nued')"
           tabindex="0">
           npm i nued-ui
+        </code>
+      </li>
+      <li>
+        Import the component you need i.e.
+        <code
+          title="Click to copy NuedIcon"
+          @click="copyPkgName(`import { NuedIcon } from 'nued-ui'`)"
+          @keypress="handleKeyPress($event, `import { NuedIcon } from 'nued-ui'`)"
+          tabindex="0">
+          import { NuedIcon } from 'nued-ui';
         </code>
       </li>
       <li>Enjoy the power on NUED!</li>
