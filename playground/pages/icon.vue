@@ -80,7 +80,7 @@ const componentDescription = 'A component enabling the use of Phosphor icons fro
   .icon-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 1rem;
 
     .icon-item {

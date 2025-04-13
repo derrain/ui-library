@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { computed } from 'vue';
-  import type { ColumnProps } from '~~/src/types/column';
+  import type { ColumnProps } from '../../types/column';
 
   const props = defineProps<ColumnProps>();
 
@@ -33,7 +33,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @use '~/assets/colors' as *;
+  @use '../../../playground/assets/colors' as *;
 
   .nued-column {
     width: 100%;

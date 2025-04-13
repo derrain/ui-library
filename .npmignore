@@ -1,0 +1,11 @@
+playground/
+plugins/
+server/
+public/
+.vscode/
+.nuxt/
+*.log
+node_modules/
+tsconfig.json
+vite.config.*
+src/

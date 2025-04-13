@@ -14,5 +14,4 @@ const NuedUI = {
   }
 };
 
-export default NuedUI;
 export * from "./components";

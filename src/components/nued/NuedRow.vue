@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { computed } from 'vue';
-  import type { RowProps } from '~~/src/types/row';
+  import type { RowProps } from '../../types/row';
 
   const props = withDefaults(defineProps<RowProps>(), {
     hAlign: 'center',
@@ -33,7 +33,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @use '~/assets/colors' as *;
+  @use '../../../playground/assets/colors' as *;
 
   .nued-row {
     width: 100%;
