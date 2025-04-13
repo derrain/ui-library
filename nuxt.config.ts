@@ -2,13 +2,6 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  ssr: true,
-  nitro: {
-    output: {
-      publicDir: './.output/public',
-      serverDir: './.output/server'
-    }
-  },
   components: [
     {
       path: '~/components',
