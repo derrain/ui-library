@@ -39,6 +39,7 @@ export default defineNuxtConfig({
         }
       ],
       link: [
+        { rel: 'icon', type: 'image/webp', href: '/nued.webp' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
         { rel:'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap' }

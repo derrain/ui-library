@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { ref, watch, computed, onMounted, onUnmounted } from 'vue';
-  import type { AlertProps } from '~~/src/types/alert';
-  import { generateMarginStyles } from '~~/src/utils/units';
+  import type { AlertProps } from '../../types/alert';
+  import { generateMarginStyles } from '../../utils/units';
 
   const props = withDefaults(defineProps<AlertProps>(), {
     variant: 'info',
@@ -85,7 +85,7 @@
 <style lang="scss" scoped>
   @use "sass:color";
   @use "sass:list";
-  @use '~/assets/colors' as *;
+  @use '../../../playground/assets/colors' as *;
 
   .nued-alert {
     font-weight: 400;

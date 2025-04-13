@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { computed } from 'vue';
-  import type { ButtonProps } from '~~/src/types/button';
-  import { generateMarginStyles } from '~~/src/utils/units';
+  import type { ButtonProps } from '../../types/button';
+  import { generateMarginStyles } from '../../utils/units';
 
   const props = withDefaults(defineProps<ButtonProps>(), {
     size: 'medium',
@@ -34,7 +34,7 @@
 <style lang="scss" scoped>
   @use "sass:color";
   @use "sass:list";
-  @use '~/assets/colors' as *;
+  @use '../../../playground/assets/colors' as *;
 
   .nued-button {
     font-size: 16px;

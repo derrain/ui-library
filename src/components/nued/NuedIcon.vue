@@ -1,8 +1,8 @@
 <script lang="ts" setup>
   import { computed } from 'vue';
   import { Icon } from '@iconify/vue';
-  import { useIconConfig } from '~~/src/composables/useIconConfig';
-  import type { IconProps } from '~~/src/types/icon';
+  import { useIconConfig } from '../../composables/useIconConfig';
+  import type { IconProps } from '../../types/icon';
 
   const props = withDefaults(defineProps<IconProps>(), {
     color: 'inherit',
