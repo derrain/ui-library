@@ -67,6 +67,7 @@
     left: 0;
     padding-top: 62px;
     transition: width .3s ease;
+    overflow-x: hidden;
     overflow-y: auto;
 
     ul {
