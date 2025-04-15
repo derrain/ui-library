@@ -26,6 +26,7 @@ const customIcons: Ref<CustomIconMap> = ref({
   'star-alt': 'ph:star-thin',
   textbox: 'ph:textbox-fill',
   'textbox-alt': 'ph:textbox-thin',
+  toolkit: 'et:tools'
 });
 
 // let added = false;
