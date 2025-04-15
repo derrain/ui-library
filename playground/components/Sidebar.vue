@@ -8,6 +8,7 @@
 
   const routeIcons = {
     '/': 'home-alt',
+    '/about': 'info-alt',
     '/alert': 'alarm-alt',
     '/button': 'cursor-alt',
     '/icon': 'star-alt',
@@ -18,7 +19,7 @@
   // Dynamically get all pages except the 'Home' page
   const componentLinks = computed(() => {
     return router.getRoutes()
-      .filter(r => r.path !== '/' && r.path !== '/playground')
+      .filter(r => r.path !== '/' && r.path !== '/playground' && r.path !== '/about')
       .map(r => ({
         name: r.name.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
         path: r.path,
@@ -29,6 +30,7 @@
   // Manually prepend the 'Home' page as the first item on the sidebar and set to the default page
   const sidebarLinks = computed(() => [
     { name: 'Home', path: '/', icon: routeIcons['/'] || 'home' },
+    { name: 'About', path: '/about', icon: routeIcons['/about'] || 'about' },
     ...componentLinks.value
   ]);
 </script>

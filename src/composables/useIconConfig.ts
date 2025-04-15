@@ -18,6 +18,8 @@ const customIcons: Ref<CustomIconMap> = ref({
   'globe-alt': 'ph:globe-thin',
   home: 'ph:house-fill',
   'home-alt': 'ph:house-thin',
+  info: 'ph:info-fill',
+  'info-alt': 'ph:info-thin',
   layout: 'ph:layout-fill',
   'layout-alt': 'ph:layout-thin',
   question: 'ph:question-fill',
