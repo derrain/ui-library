@@ -9,6 +9,7 @@
   const routeIcons = {
     '/': 'home-alt',
     '/about': 'info-alt',
+    '/version-updates': 'history',
     '/alert': 'alarm-alt',
     '/button': 'cursor-alt',
     '/icon': 'star-alt',
@@ -19,7 +20,7 @@
   // Dynamically get all pages except the 'Home' page
   const componentLinks = computed(() => {
     return router.getRoutes()
-      .filter(r => r.path !== '/' && r.path !== '/playground' && r.path !== '/about')
+      .filter(r => r.path !== '/' && r.path !== '/playground' && r.path !== '/about' && r.path !== '/version-updates')
       .map(r => ({
         name: r.name.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
         path: r.path,
@@ -31,6 +32,7 @@
   const sidebarLinks = computed(() => [
     { name: 'Home', path: '/', icon: routeIcons['/'] || 'home' },
     { name: 'About', path: '/about', icon: routeIcons['/about'] || 'about' },
+    { name: `What's New`, path: '/version-updates', icon: routeIcons['/version-updates'] || 'version-updates' },
     ...componentLinks.value
   ]);
 </script>
