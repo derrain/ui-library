@@ -1,0 +1,26 @@
+[
+  {
+    "version": "v1.0.4",
+    "changes": [
+      "Added favicon",
+      "Created the .npmignore file",
+      "Setup package.json file",
+      "Removed unnecessary packages",
+      "Created the Icon component",
+      "Renamed all the components to have prefix \"Nued\"",
+      "Added units.ts file with common 'margin' attribute",
+      "Amended all component files and added new 'margin' attribute to all supportive component playground pages",
+      "Reduced  the padding-right from '80px' to '60px' when dismissible is enabled",
+      "Set align-items to center",
+      "Set Alert component width to 100% and applied a box-sizing",
+      "Fixed Row component displaying out of bounds",
+      "Fixed issue with alert not showing on button click",
+      "Created the Row and Column components",
+      "Created Alert component",
+      "Create styles list",
+      "Added props (label, Variant, Dismissible, Auto dismiss and interval)",
+      "Added 'Variant' prop to the button component",
+      "Created the Button component and implemented the demo page"
+    ]
+  }
+]

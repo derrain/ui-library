@@ -16,6 +16,7 @@ const customIcons: Ref<CustomIconMap> = ref({
   'cursor-alt': 'ph:cursor-click-thin',
   globe: 'ph:globe-fill',
   'globe-alt': 'ph:globe-thin',
+  history: 'material-symbols-light:update-rounded',
   home: 'ph:house-fill',
   'home-alt': 'ph:house-thin',
   info: 'ph:info-fill',
