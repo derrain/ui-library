@@ -1,30 +1,41 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+  import { ref } from 'vue';
 
-type Release = {
-  id: number;
-  tag_name: string;
-  name: string;
-  body: string;
-  published_at: string;
-};
+  const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
+  const GITHUB_REPO = process.env.GITHUB_REPO;
 
-const releases = ref<Release[]>([]);
+  const apiURL = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/releases`;
 
-// Helper to format published_at
-const formatDate = (dateString: string): string => {
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  };
-  return new Date(dateString).toLocaleDateString(undefined, options);
-};
+  const { data: releases, status, error } = useFetch(apiURL, {
+    key: `github-releases-${GITHUB_USERNAME}-${GITHUB_REPO}`,
+    headers: {
+      'Accept': 'application/vnd.github.v3+json',
+      'X-GtiHub-Api-Version': '2022-11-28'
+    },
+    transform: (data) => {
+      if (!Array.isArray(data)) return [];
 
-onMounted(async () => {
-  const res = await fetch('/api/releases');
-  releases.value = await res.json();
-});
+      return data.map(release => ({
+        id: release.id,
+        tag_name: release.tag_name,
+        name: release.name,
+        published_at: release.published_at,
+        body: release.body
+      }));
+    }
+  });
+
+  function formatDate(dateString: string | null): string {
+    if (!dateString) return 'Date not available';
+
+    try {
+      const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    } catch (e) {
+      console.error('Error formatting date:', e);
+      return dateString;
+    }
+  }
 </script>
 
 <template>
@@ -35,7 +46,18 @@ onMounted(async () => {
 
   <section>
     <div
-      v-if="releases.length"
+      v-if="status === 'pending'">
+      <p>Loading changelog...</p>
+    </div>
+
+    <div
+      v-else-if="error">
+      <p>Could not load changelog. Please try again later.</p>
+      <pre v-if="error.message">Error: {{ error.message }}</pre>
+    </div>
+
+    <div
+      v-else-if="releases && releases.length > 0"
       v-for="release in releases"
       :key="release.id">
       <h3>{{ release.tag_name }} - {{ release.name || 'Untitled release' }}</h3>
@@ -44,28 +66,10 @@ onMounted(async () => {
         <li>{{ release.body || 'No description provided.' }}</li>
       </ul>
     </div>
-    <p v-else>Loading changelog...</p>
-  </section>
 
-  <!-- <div class="changelog">
-    <h2 class="text-2xl font-bold mb-4">📦 Changelog</h2>
-    <ul v-if="releases.length">
-      <li
-        v-for="release in releases"
-        :key="release.id"
-        class="mb-6 p-4 border rounded bg-white dark:bg-gray-900 shadow"
-      >
-        <h3 class="text-xl font-semibold">
-          {{ release.tag_name }} - {{ release.name || 'Untitled release' }}
-        </h3>
-        <p class="text-gray-600 text-sm mb-2">
-          {{ formatDate(release.published_at) }}
-        </p>
-        <p class="whitespace-pre-wrap">
-          {{ release.body || 'No description provided.' }}
-        </p>
-      </li>
-    </ul>
-    <p v-else>Loading changelog...</p>
-  </div> -->
+    <p
+      v-else>
+      No releases found for NUED yet.
+    </p>
+  </section>
 </template>
