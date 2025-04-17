@@ -1,6 +1,7 @@
 export default defineEventHandler(async () => {
-  const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
-  const REPO_NAME = process.env.GITHUB_REPO;
+  const config = useRuntimeConfig();
+  const GITHUB_USERNAME = config.GITHUB_USERNAME;
+  const REPO_NAME = config.GITHUB_REPO;
 
   const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/releases`, {
     headers: {
