@@ -14,7 +14,8 @@
     '/button': 'cursor-alt',
     '/icon': 'star-alt',
     '/input': 'textbox-alt',
-    '/layout': 'layout-alt'
+    '/layout': 'layout-alt',
+    '/notification': 'notification-alt',
   };
 
   // Dynamically get all pages except the 'Home' page

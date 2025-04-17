@@ -47,4 +47,7 @@ export default defineNuxtConfig({
     }
   },
   srcDir: 'playground/',
+  runtimeConfig: {
+    GITHUB_TOKEN: process.env.GITHUB_TOKEN,
+  }
 })
