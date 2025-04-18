@@ -63,9 +63,18 @@
       :key="release.id">
       <h3>{{ release.tag_name }} - {{ release.name || 'Untitled release' }}</h3>
       <p>{{ formatDate(release.published_at) }}</p>
-      <ul>
-        <li>{{ release.body || 'No description provided.' }}</li>
+      <ul
+        v-if="release.body">
+        <li
+          v-for="(line, index) in release.body.split('\n').filter((line: string) => line.trim().startsWith('-'))"
+          :key="index">
+          {{ line.replace(/^-+/, '').trim() }}
+        </li>
       </ul>
+      <p
+        v-else>
+        No description provided.
+      </p>
     </div>
 
     <p
