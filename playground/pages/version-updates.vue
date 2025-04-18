@@ -95,14 +95,33 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      gap: 1rem;
+      margin-bottom: 1rem;
       padding: 1rem;
       border: 1px solid $black;
       border-radius: 8px;
       box-sizing: border-box;
 
       pre {
+        margin: 0;
         white-space: wrap;
+      }
+
+      h3 {
+        font-size: 1.15rem;
+        color: $primary;
+        margin-bottom: .5rem;
+      }
+
+      p {
+        font-size: 1rem;
+        color: $lightgrey;
+      }
+
+      ul {
+        li {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
       }
     }
   }
