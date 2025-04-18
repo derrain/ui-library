@@ -45,7 +45,7 @@
     <p>Find the latest updates of the NUED UI Component Library here.</p>
   </section>
 
-  <section>
+  <section class="release-notes-section">
     <div
       v-if="status === 'pending'">
       <p>Loading changelog...</p>
@@ -85,7 +85,25 @@
 </template>
 
 <style lang="scss" scoped>
-  pre {
-    white-space: wrap;
+  @use '~/assets/colors' as *;
+
+  .release-notes-section {
+    > div {
+      background: $darkgrey-1;
+      width: 100%;
+      min-height: 10px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 1rem;
+      padding: 1rem;
+      border: 1px solid $black;
+      border-radius: 8px;
+      box-sizing: border-box;
+
+      pre {
+        white-space: wrap;
+      }
+    }
   }
 </style>
