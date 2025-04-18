@@ -3,4 +3,5 @@ export { default as NuedButton } from './components/nued/NuedButton.vue';
 export { default as NuedColumn } from './components/nued/NuedColumn.vue';
 export { default as NuedIcon } from './components/nued/NuedIcon.vue';
 export { default as NuedInput } from './components/nued/NuedInput.vue';
+export { default as NuedNotification } from './components/nued/NuedNotification.vue';
 export { default as NuedRow } from './components/nued/NuedRow.vue';
