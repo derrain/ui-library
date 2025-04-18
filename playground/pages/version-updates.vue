@@ -3,8 +3,6 @@
   const GITHUB_USERNAME = config.NUXT_PUBLIC_GITHUB_USERNAME;
   const GITHUB_REPO = config.NUXT_PUBLIC_GITHUB_REPO;
 
-  console.warn('username:', GITHUB_USERNAME);
-
   const apiURL = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/releases`;
 
   const { data: releases, status, error } = useFetch(apiURL, {
@@ -13,16 +11,49 @@
       'Accept': 'application/vnd.github.v3+json',
       'X-GitHub-Api-Version': '2022-11-28'
     },
-    transform: (data) => {
+    transform: async (data) => {
       if (!Array.isArray(data)) return [];
 
-      return data.map(release => ({
-        id: release.id,
-        tag_name: release.tag_name,
-        name: release.name,
-        published_at: release.published_at,
-        body: release.body
-      }));
+      const enriched =await Promise.all(
+        data.map(async (release) => {
+          try {
+            const commitRes = await $fetch<{
+              commit: {
+                author: {
+                  date: string
+                }
+              }
+            }>(
+              `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/commits/${release.target_commitish}`,
+              {
+                headers: {
+                  'Accept': 'application/vnd.github.v3+json',
+                  'X-GitHub-Api-Version': '2022-11-28'
+                }
+              }
+            );
+
+            return {
+              id: release.id,
+              tag_name: release.tag_name,
+              name: release.name,
+              published_at: commitRes?.commit?.author?.date ?? release.published_at,
+              body: release.body
+            };
+          } catch (e) {
+            console.warn('Failed to fetch commit info for', release.tag_name);
+            return {
+              id: release.id,
+              tag_name: release.tag_name,
+              name: release.name,
+              published_at: release.published_at, // fallback
+              body: release.body
+            };
+          }
+        })
+      );
+
+      return enriched;
     }
   });
 
