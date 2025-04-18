@@ -14,9 +14,41 @@
     transform: async (data) => {
       if (!Array.isArray(data)) return [];
 
-      const enriched =await Promise.all(
+      const enriched = await Promise.all(
         data.map(async (release) => {
           try {
+            const tagRef = await $fetch<{
+              object: { sha: string; type: string }
+            }>(
+              `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/git/ref/tags/${release.tag_name}`,
+              {
+                headers: {
+                  'Accept': 'application/vnd.github.v3+json',
+                  'X-GitHub-Api-Version': '2022-11-28'
+                }
+              }
+            );
+
+            let commitSha = tagRef.object.sha;
+
+            if (tagRef.object.type === 'tag') {
+              const tagObject = await $fetch<{
+                object: { sha: string; type: string }
+              }>(
+                `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/git/tags/${tagRef.object.sha}`,
+                {
+                  headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                    'X-GitHub-Api-Version': '2022-11-28'
+                  }
+                }
+              );
+
+              if (tagObject.object.type === 'commit') {
+                commitSha = tagObject.object.sha;
+              }
+            }
+
             const commitRes = await $fetch<{
               commit: {
                 author: {
@@ -24,7 +56,7 @@
                 }
               }
             }>(
-              `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/commits/${release.target_commitish}`,
+              `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/commits/${commitSha}`,
               {
                 headers: {
                   'Accept': 'application/vnd.github.v3+json',
@@ -37,7 +69,7 @@
               id: release.id,
               tag_name: release.tag_name,
               name: release.name,
-              published_at: commitRes?.commit?.author?.date ?? release.published_at,
+              published_at: commitRes.commit.author.date,
               body: release.body
             };
           } catch (e) {
@@ -46,7 +78,7 @@
               id: release.id,
               tag_name: release.tag_name,
               name: release.name,
-              published_at: release.published_at, // fallback
+              published_at: release.published_at,
               body: release.body
             };
           }
