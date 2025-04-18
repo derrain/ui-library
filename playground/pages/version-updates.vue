@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-  import { ref } from 'vue';
-
-  const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
-  const GITHUB_REPO = process.env.GITHUB_REPO;
+  const config = useRuntimeConfig();
+  const GITHUB_USERNAME = config.GITHUB_USERNAME;
+  const GITHUB_REPO = config.GITHUB_REPO;
 
   const apiURL = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/releases`;
 
@@ -73,3 +72,9 @@
     </p>
   </section>
 </template>
+
+<style lang="scss" scoped>
+  pre {
+    white-space: wrap;
+  }
+</style>
