@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-  const config = useRuntimeConfig();
-  const GITHUB_USERNAME = config.GITHUB_USERNAME;
-  const GITHUB_REPO = config.GITHUB_REPO;
+  const config = useRuntimeConfig().public;
+  const GITHUB_USERNAME = config.NUXT_PUBLIC_GITHUB_USERNAME;
+  const GITHUB_REPO = config.NUXT_PUBLIC_GITHUB_REPO;
 
   const apiURL = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/releases`;
 

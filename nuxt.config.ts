@@ -46,11 +46,5 @@ export default defineNuxtConfig({
       ]
     }
   },
-  srcDir: 'playground',
-  runtimeConfig: {
-    public: {
-      GITHUB_USERNAME: process.env.GITHUB_USERNAME,
-      GITHUB_REPO: process.env.GITHUB_REPO
-    }
-  }
+  srcDir: 'playground/',
 })
