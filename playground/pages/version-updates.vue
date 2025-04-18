@@ -11,7 +11,7 @@
     key: `github-releases-${GITHUB_USERNAME}-${GITHUB_REPO}`,
     headers: {
       'Accept': 'application/vnd.github.v3+json',
-      'X-GtiHub-Api-Version': '2022-11-28'
+      'X-GitHub-Api-Version': '2022-11-28'
     },
     transform: (data) => {
       if (!Array.isArray(data)) return [];
