@@ -3,6 +3,8 @@
   const GITHUB_USERNAME = config.NUXT_PUBLIC_GITHUB_USERNAME;
   const GITHUB_REPO = config.NUXT_PUBLIC_GITHUB_REPO;
 
+  console.warn('username:', GITHUB_USERNAME);
+
   const apiURL = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/releases`;
 
   const { data: releases, status, error } = useFetch(apiURL, {
