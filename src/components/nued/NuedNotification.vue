@@ -1,10 +1,13 @@
 <script lang="ts" setup>
   import { ref, onMounted, onUnmounted, toRefs } from 'vue';
   import type { NotificationProps } from '../../types/notification';
+  import NuedIcon from './NuedIcon.vue';
 
   const props = withDefaults(defineProps<NotificationProps>(), {
     title: '',
     message: '',
+    showIcon: false,
+    iconName: '',
     position: 'right',
     variant: 'info',
     dismissible: false,
@@ -62,8 +65,18 @@
       `${dismissible ? 'dismissible' : ''}`
     ]"
     >
-    <h4>{{ title }}</h4>
-    <p>{{ message }}</p>
+    <div class="nued-notification--content">
+      <NuedIcon
+        v-if="showIcon && iconName"
+        :name="iconName"
+        size="medium"
+        class="nued-notification--icon" />
+
+      <div class="nued-notification--body">
+        <h4>{{ title }}</h4>
+        <p>{{ message }}</p>
+      </div>
+    </div>
     <button
       v-if="dismissible"
       class="dismissible-btn"
@@ -81,7 +94,7 @@
 
   .nued-notification {
     font-weight: 300;
-    max-width: 500px;
+    max-width: 350px;
     display: grid;
     position: fixed;
     top: 1rem;
@@ -90,15 +103,26 @@
     box-sizing: border-box;
     z-index: 9999;
 
-    h4 {
-      font-size: 1.15rem;
-      font-weight: 400;
-      margin: 0 0 .5rem;
-    }
+    .nued-notification--content {
+      display: inline-flex;
 
-    p {
-      font-size: 1rem;
-      margin: 0;
+      .nued-notification--icon {
+        padding-right: 1rem;
+        flex-shrink: 0;
+      }
+
+      .nued-notification--body {
+        h4 {
+          font-size: 1.15rem;
+          font-weight: 400;
+          margin: 0 0 .5rem;
+        }
+
+        p {
+          font-size: 1rem;
+          margin: 0;
+        }
+      }
     }
 
     @each $key, $values in $alert-variants {

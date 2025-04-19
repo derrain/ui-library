@@ -11,8 +11,15 @@
   });
 
   const { customIcons } = useIconConfig();
+  const fallback = 'ph:question';
 
-  const iconName = computed(() => (customIcons.value as Record<string, string>)[props.name] || props.name);
+  const iconName = computed(() => {
+    const alias = (customIcons.value as Record<string, string>)[props.name];
+    
+    if (alias) return alias;
+    if (props.name && props.name.includes(':')) return props.name;
+    return fallback;
+  });
 </script>
 
 <template>
