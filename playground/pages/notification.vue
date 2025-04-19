@@ -10,6 +10,8 @@
   const model = ref({
     title: 'This is a notification',
     message: 'Yay! You performed an action!',
+    showIcon: false,
+    iconName: '',
     position: 'right',
     variant: 'info',
     dismissible: false,
@@ -25,6 +27,8 @@
   const controls = [
     { label: 'Title', type: 'text', model: 'title' },
     { label: 'Message', type: 'text', model: 'message' },
+    { label: 'Show Icon', type: 'checkbox', model: 'showIcon' },
+    { label: 'Icon Name', type: 'text', model: 'iconName' },
     { label: 'Position', type: 'select', options: ['left', 'center', 'right'], model: 'position' },
     { label: 'Variant', type: 'select', options: ['info', 'success', 'warning', 'danger'], model: 'variant' },
     { label: 'Dismissible', type: 'checkbox', model: 'dismissible' },
@@ -35,6 +39,8 @@
     <NuedNotification
       title='' // Set to '' by default, this is the notification title.
       message='' // Set to '' by default, this is the body of the notification with more detailed information.
+      showIcon=false // Toggle between show/hide of an icon. DEPENDENT ON AN ICON NAME!
+      iconName='' // By default set to '', you can provide the full name or alias of any icon in the 'Icon' page.
       position='right' // Choose between 'left' | 'center' | 'right' to align the nofication. Default is 'right'.
       variant='info' // Choose between 'info' | 'success' | 'warning' | 'danger'. Default is 'info'.
       dismissible=false // Set to fale by default, toggle between manual dismissal of the notification.
@@ -62,6 +68,8 @@
         v-if="isNotificationVisible"
         :title="props.title"
         :message="props.message"
+        :showIcon="props.showIcon"
+        :iconName="props.iconName"
         :position="props.position"
         :variant="props.variant"
         :dismissible="props.dismissible"
