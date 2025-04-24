@@ -28,6 +28,7 @@
     background: transparent;
     width: 100%;
     position: relative;
+    padding: .25rem;
     overflow-y: auto;
 
     &.nued-list-wrapper--height {

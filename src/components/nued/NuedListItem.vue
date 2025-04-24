@@ -30,6 +30,7 @@
       `nued-list-item--${layout}`,
       'nued-list-item--clickable'
     ]"
+    tabindex="0"
     v-if="isClickable"
     @click="handleClick"
     @keypress="handleKeyPress">
