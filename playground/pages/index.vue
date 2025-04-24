@@ -75,10 +75,10 @@
         Install the NUED library using
         <code
           title="Click to copy NUED"
-          @click="copyPkgName('npm i nued')"
-          @keypress="handleKeyPress($event, 'npm i nued')"
+          @click="copyPkgName('npm i nued-ui@latest')"
+          @keypress="handleKeyPress($event, 'npm i nued-ui@latest')"
           tabindex="0">
-          npm i nued-ui
+          npm i nued-ui@latest
         </code>
       </li>
       <li>
