@@ -8,13 +8,13 @@
   </url>
   <url>
     <loc>https://www.nued.design/about</loc>
-    <lastmod>2025-04-16</lastmod>
+    <lastmod>2025-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.nued.design/alert</loc>
-    <lastmod>2025-04-16</lastmod>
+    <lastmod>2025-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
   </url>
@@ -26,7 +26,13 @@
   </url>
   <url>
     <loc>https://www.nued.design/icon</loc>
-    <lastmod>2025-04-16</lastmod>
+    <lastmod>2025-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+  </url>
+  <url>
+    <loc>https://www.nued.design/list</loc>
+    <lastmod>2025-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
   </url>
