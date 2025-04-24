@@ -23,6 +23,8 @@ const customIcons: Ref<CustomIconMap> = ref({
   'info-alt': 'ph:info-thin',
   layout: 'ph:layout-fill',
   'layout-alt': 'ph:layout-thin',
+  list: 'ph:list-bullets-fill',
+  'list-alt': 'ph:list-bullets-thin',
   notification: 'ph:notification-fill',
   'notification-alt': 'ph:notification-thin',
   question: 'ph:question-fill',

@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, watch } from 'vue';
   import PlaygroundWrapper from '~/components/PlaygroundWrapper.vue';
   import NuedAlert from '~~/src/components/nued/NuedAlert.vue';
   import NuedButton from '~~/src/components/nued/NuedButton.vue';
@@ -17,6 +17,7 @@
   });
 
   const isAlertVisible = ref(true);
+  const alertKey = ref(0);
 
   const showAlert = () => {
     isAlertVisible.value = true;
@@ -42,6 +43,10 @@
       This is a sample alert text!
     </NuedAlert>
   `;
+
+  watch(model, () => {
+    alertKey.value++;
+  });
 </script>
 
 <template>
