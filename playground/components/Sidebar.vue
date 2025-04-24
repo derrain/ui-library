@@ -15,6 +15,7 @@
     '/icon': 'star-alt',
     '/input': 'textbox-alt',
     '/layout': 'layout-alt',
+    '/list': 'list-alt',
     '/notification': 'notification-alt',
   };
 
