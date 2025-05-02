@@ -1,11 +1,14 @@
 <script lang="ts" setup>
   import type { ListItemprops } from '../../types/list-item';
+  import NuedIcon from './NuedIcon.vue';
 
   const props = withDefaults(defineProps<ListItemprops>(), {
     title: '',
     body: '',
     layout: 'default',
-    isClickable: false
+    isClickable: false,
+    showIcon: false,
+    iconName: '',
   });
 
   function handleClick(event: MouseEvent | KeyboardEvent) {
@@ -34,8 +37,18 @@
     v-if="isClickable"
     @click="handleClick"
     @keypress="handleKeyPress">
-    <h4 class="nued-list-item--title">{{ title }}</h4>
-    <p class="nued-list-item--body">{{ body }}</p>
+    <div
+      class="nued-list-item--icon"
+      v-if="showIcon && iconName">
+      <NuedIcon
+        :name="iconName"
+        size="medium"
+        class="nued-notification--icon" />
+    </div>
+    <div class="nued-list-item--content">
+      <h4 class="nued-list-item--title">{{ title }}</h4>
+      <p class="nued-list-item--body">{{ body }}</p>
+    </div>
   </div>
 
   <div
@@ -46,8 +59,18 @@
       'nued-list-item--unclickable'
     ]"
     v-else>
-    <h4 class="nued-list-item--title">{{ title }}</h4>
-    <p class="nued-list-item--body">{{ body }}</p>
+    <div
+      class="nued-list-item--icon"
+      v-if="showIcon && iconName">
+      <NuedIcon
+        :name="iconName"
+        size="medium"
+        class="nued-notification--icon" />
+    </div>
+    <div class="nued-list-item--content">
+      <h4 class="nued-list-item--title">{{ title }}</h4>
+      <p class="nued-list-item--body">{{ body }}</p>
+    </div>
   </div>
 </template>
 
@@ -69,6 +92,22 @@
     }
 
     &.nued-list-item {
+      display: flex;
+      align-items: flex-start;
+      
+      .nued-list-item--icon {
+        width: fit-content;
+        flex-shrink: 0;
+        margin-right: 1rem;
+      }
+
+      .nued-list-item--content {
+        .nued-list-item--title,
+        .nued-list-item--body {
+          flex-wrap: wrap;
+        }
+      }
+
       &--default {
         .nued-list-item--title {
           margin: .15rem 0;

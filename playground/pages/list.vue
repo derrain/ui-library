@@ -13,6 +13,8 @@
     body: 'This is sample body text',
     layout: 'default',
     isClickable: false,
+    showIcon: false,
+    iconName: '',
     viewHeight: 'small',
     viewWidth: 'small',
   });
@@ -23,7 +25,9 @@
     { label: 'Title', type: 'text', model: 'title' },
     { label: 'Body Text', type: 'text', model: 'body' },
     { label: 'Layout', type: 'select', options: ['default', 'compressed'], model: 'layout' },
-    { label: 'Is Clickable?', type: 'checkbox', model: 'isClickable' }
+    { label: 'Is Clickable?', type: 'checkbox', model: 'isClickable' },
+    { label: 'Show Icon', type: 'checkbox', model: 'showIcon' },
+    { label: 'Icon Name', type: 'text', model: 'iconName' },
   ];
 
   const usageCode = `
@@ -37,6 +41,8 @@
         layout='default' // Choose between 'default' | 'compressed' layouts. Default is set to 'default'.
         isClickable=false // Toggle between clickable or unclickable list items. Default is false.
         @click='handleClick(parameters)' // If 'isClickable' is enabled, use 'handleClick' function to trigger an event.
+        showIcon=false // Toggle between show/hide of an icon. DEPENDENT ON AN ICON NAME!
+        iconName='' // By default set to '', you can provide the full name or alias of any icon in the 'Icon' page.
       />
     </NuedList>
   `;
@@ -80,6 +86,8 @@
           :layout="props.layout"
           :isClickable="props.isClickable"
           :onClick="handleClick(i)"
+          :showIcon="props.showIcon"
+          :iconName="props.iconName"
         />
       </NuedList>
     </template>
