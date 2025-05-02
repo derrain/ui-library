@@ -4,4 +4,6 @@ export interface ListItemprops {
   layout?: 'default' | 'compressed';
   isClickable: boolean;
   onClick?: (...args: any[]) => void;
+  showIcon?: boolean;
+  iconName?: string;
 }
