@@ -1,7 +1,8 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, nextTick } from 'vue';
   import PlaygroundWrapper from '~/components/PlaygroundWrapper.vue';
   import NuedButton from '~~/src/components/nued/NuedButton.vue';
+  import NuedNotification from '~~/src/components/nued/NuedNotification.vue';
 
   const componentTitle = 'Button';
   const componentDescription = 'A customisable button component offering multiple colour combinations and sizes to suit your website needs.';
@@ -32,6 +33,14 @@
       Click Me // Label text goes here
     </NuedButton>
   `;
+
+  const showNotification = ref(false);
+
+  const handleClick = () => {
+    showNotification.value = false;
+
+    nextTick(() => showNotification.value = true);
+  }
 </script>
 
 <template>
@@ -43,11 +52,20 @@
     :usageCode="usageCode"
   >
     <template #default="{ props }">
+      <NuedNotification
+        title="Click triggered!"
+        message="Yay! You clicked the button..."
+        :showIcon="true"
+        iconName="info-alt"
+        :dismissible="true"
+        v-if="showNotification"/>
+
       <NuedButton
         :size="props.size"
         :variant="props.variant"
         :disabled="props.disabled"
-        :margin="props.margin">
+        :margin="props.margin"
+        @click="handleClick">
         {{ props.label }}
       </NuedButton>
     </template>
