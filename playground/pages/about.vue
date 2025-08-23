@@ -1,65 +1,3 @@
-<script lang="ts" setup>
-  import { ref, onMounted, nextTick } from 'vue';
-
-  const lines = [
-    {
-      text: 'My name is...',
-      tag: 'h4',
-      rotate: 15
-    },
-    {
-      text: 'WHAT?',
-      tag: 'h3',
-      rotate: -15
-    },
-    {
-      text: 'My name is...',
-      tag: 'h4',
-      rotate: 15
-    },
-    {
-      text: 'WHO?',
-      tag: 'h3',
-      rotate: -15
-    },
-    {
-      text: 'My name is...',
-      tag: 'h4',
-      rotate: 15
-    },
-    {
-      text: 'Chiki chiki',
-      tag: 'h3',
-      rotate: -15
-    }
-  ];
-
-  const hiVisible = ref(false);
-  const visibleSections = ref<boolean[]>(Array(lines.length).fill(false));
-  const sections = ref<HTMLElement[]>([]);
-
-  onMounted(async () => {
-    hiVisible.value = true;
-
-    await nextTick();
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const index = sections.value.findIndex((el) => el === entry.target);
-
-          if (entry.isIntersecting && index !== -1) {
-            visibleSections.value[index] = true;
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    sections.value.forEach((el) => observer.observe(el));
-  });
-</script>
-
 <template>
   <section>
     <h2 class="page-header">About the Author</h2>
@@ -87,7 +25,7 @@
     float: left;
 
     .author-image {
-      width: 300px;
+      width: 150px;
       display: grid;
       gap: 1.5rem;
       position: relative;

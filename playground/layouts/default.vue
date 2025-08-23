@@ -28,7 +28,7 @@
         min-width: 0;
         flex-grow: 1;
         position: relative;
-        margin-left: 60px;
+        margin-left: 85px;
         padding: 1.5rem 2rem;
 
         @media screen and (min-width: 768px) {

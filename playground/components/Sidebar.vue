@@ -72,7 +72,7 @@
 
   aside {
     background: $darkgrey-1;
-    width: 60px;
+    width: 85px;
     height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
@@ -81,13 +81,13 @@
     left: 0;
     padding-top: 60px;
     transition: width .3s ease;
-    overflow-x: hidden;
 
     ul {
       flex-grow: 1;
       margin: 0;
       padding: 0;
       list-style: none;
+      overflow-x: hidden;
       overflow-y: auto;
 
       li {
@@ -98,7 +98,7 @@
           font-size: 1.2rem;
           font-weight: 400;
           display: block;
-          padding: 1.25rem;
+          padding: 1.25rem 1px;
           text-decoration: none;
 
           &.active {
@@ -107,9 +107,16 @@
           }
 
           .nav-link--item {
-            display: inline-flex;
-            gap: 1rem;
+            font-size: .75rem;
+            display: grid;
             align-items: center;
+            text-align: center;
+
+            @media screen and (min-width: 768px) {
+              font-size: 1.195rem;
+              display: inline-flex;
+              gap: 1rem;
+            }
           }
 
           @media screen and (min-width: 768px) {
