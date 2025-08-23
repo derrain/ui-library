@@ -9,14 +9,22 @@
   const routeIcons = {
     '/': 'home-alt',
     '/about': 'info-alt',
+    '/card': 'card',
     '/version-updates': 'history',
+    '/accordion': 'accordion',
     '/alert': 'alarm-alt',
     '/button': 'cursor-alt',
+    '/carousel': 'carousel-alt',
     '/icon': 'star-alt',
     '/input': 'textbox-alt',
+    '/checkbox': 'checkbox-alt',
     '/layout': 'layout-alt',
     '/list': 'list-alt',
     '/notification': 'notification-alt',
+    '/pagination': 'pagination',
+    '/progress-bar': 'spinner',
+    '/radio-button': 'radio-alt',
+    '/switch': 'switch-alt',
   };
 
   // Dynamically get all pages except the 'Home' page
@@ -65,22 +73,22 @@
   aside {
     background: $darkgrey-1;
     width: 60px;
-    height: 100vh;
+    height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 62px;
+    padding-top: 60px;
     transition: width .3s ease;
     overflow-x: hidden;
-    overflow-y: auto;
 
     ul {
       flex-grow: 1;
       margin: 0;
       padding: 0;
       list-style: none;
+      overflow-y: auto;
 
       li {
         display: block;
