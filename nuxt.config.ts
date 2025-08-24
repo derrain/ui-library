@@ -67,7 +67,11 @@ export default defineNuxtConfig({
     }
   },
   nitro: {
-    
+    publicAssets: [
+      {
+        dir: 'public'
+      }
+    ]
   },
   typescript: {
     strict: true,
