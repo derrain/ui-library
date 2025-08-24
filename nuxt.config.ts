@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { resolve } from 'pathe';
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
@@ -16,6 +18,20 @@ export default defineNuxtConfig({
       prefix: 'Nued',
     }
   ],
+  vite: {
+    resolve: {
+      alias: {
+        '@nued': resolve('./src'),
+      }
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern',
+        }
+      }
+    }
+  },
   vue: {
     compilerOptions: {
       isCustomElement: (tag) => tag === 'iconify-icon'

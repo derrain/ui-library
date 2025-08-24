@@ -28,22 +28,33 @@ export default defineConfig({
     dts({
       entryRoot: 'src',
       outDir: 'dist',
-      tsconfigPath: path.resolve(__dirname, 'tsconfig.json')
+      tsconfigPath: path.resolve(__dirname, 'tsconfig.lib.json'),
+      exclude: [
+        'app/**/*',
+        'playground/**/*',
+        'server/**/*',
+        '.nuxt/**/*',
+        'node_modules/**/*',
+        'nuxt.config.*',
+        'vite.config.*'
+      ]
     }),
   ],
   resolve: {
     alias: {
+      '@nued': path.resolve(__dirname, 'src'),
       '~': path.resolve(__dirname, 'src'),
       '~~': path.resolve(__dirname, '.'),
-      '@app': path.resolve(__dirname, 'app')
     }
   },
   css: {
     preprocessorOptions: {
       scss: {
         api: 'modern',
-        loadPaths: [path.resolve(__dirname, 'app/assets')]
       }
     }
+  },
+  optimizeDeps: {
+    exclude: ['#app']
   }
 })

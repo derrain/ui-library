@@ -34,7 +34,7 @@
 <style lang="scss" scoped>
   @use "sass:color";
   @use "sass:list";
-  @use '@app/assets/colors' as *;
+  @use '@nued/styles/nued-colors' as *;
 
   .nued-button {
     font-size: 16px;

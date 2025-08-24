@@ -18,7 +18,7 @@
   });
 
   const isAlertVisible = ref(true);
-  let dismissTimer: NodeJS.Timeout | null = null;
+  let dismissTimer: ReturnType<typeof setTimeout> | null = null;
   const emit = defineEmits(['dismiss']);
 
   const dismissAlert = () => {
@@ -85,7 +85,7 @@
 <style lang="scss" scoped>
   @use "sass:color";
   @use "sass:list";
-  @use '@app/assets/colors' as *;
+  @use '@nued/styles/nued-colors' as *;
 
   .nued-alert {
     font-weight: 400;

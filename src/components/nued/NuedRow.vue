@@ -33,7 +33,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @use '@app/assets/colors' as *;
+  @use '@nued/styles/nued-colors' as *;
 
   .nued-row {
     width: 100%;
