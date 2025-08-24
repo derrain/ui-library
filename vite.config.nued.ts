@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import dts from 'vite-plugin-dts';
-import cssInjected from 'vite-plugin-css-injected-by-js';
 
 export default defineConfig({
   build: {
@@ -13,27 +12,49 @@ export default defineConfig({
       formats: ['es', 'cjs']
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', '@iconify/vue'],
       output: {
         globals: {
           vue: 'Vue'
-        }
+        },
+        exports: 'named'
       }
     },
-    outDir: 'dist'
+    outDir: 'dist',
+    sourcemap: true
   },
   plugins: [
     vue(),
     dts({
       entryRoot: 'src',
       outDir: 'dist',
-      tsconfigPath: path.resolve(__dirname, 'tsconfig.json')
+      tsconfigPath: path.resolve(__dirname, 'tsconfig.lib.json'),
+      exclude: [
+        'app/**/*',
+        'playground/**/*',
+        'server/**/*',
+        '.nuxt/**/*',
+        'node_modules/**/*',
+        'nuxt.config.*',
+        'vite.config.*'
+      ]
     }),
-    cssInjected()
   ],
   resolve: {
     alias: {
-      '~': path.resolve(__dirname, 'src')
+      '@nued': path.resolve(__dirname, 'src'),
+      '~': path.resolve(__dirname, 'src'),
+      '~~': path.resolve(__dirname, '.'),
     }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+      }
+    }
+  },
+  optimizeDeps: {
+    exclude: ['#app']
   }
 })

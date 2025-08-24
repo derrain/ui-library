@@ -1,0 +1,26 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/*": ["./src/*"],
+      "~~/*": ["./*"]
+    },
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "stripInternal": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "app",
+    "playground",
+    "server",
+    ".nuxt",
+    "node_modules",
+    "nuxt.config.*",
+    "vite.config.*",
+    "**/*.spec.*"
+  ]
+}

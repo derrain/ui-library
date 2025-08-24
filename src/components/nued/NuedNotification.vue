@@ -17,7 +17,7 @@
   const { position, variant, dismissible, autoDismissInterval } = toRefs(props);
 
   const isNotificationVisible = ref(true);
-  let dismissTimer: NodeJS.Timeout | null = null;
+  let dismissTimer: ReturnType<typeof setTimeout> | null = null;
   const emit = defineEmits(['dismiss']);
 
   const dismissNotification = () => {
@@ -90,7 +90,7 @@
 <style lang="scss" scoped>
   @use "sass:color";
   @use "sass:list";
-  @use '../../../playground/assets/colors' as *;
+  @use '@nued/styles/nued-colors' as *;
 
   .nued-notification {
     font-weight: 300;

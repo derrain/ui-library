@@ -2,7 +2,7 @@
   <section>
     <h2 class="page-header">About the Author</h2>
     <div class="author">
-      <img src="../public/derrain.webp" alt="Derrain De Silva" class="author-image" />
+      <img src="/derrain.webp" alt="Derrain De Silva" class="author-image" />
 
       <h3>The idea</h3>
       <p>Building a custom frontend UI component library was an idea that struck me while working at 99x Technologies. However, my initial idea even before working at 99x was to build a UI framework similar to Bootstrap. The idea of creating actual components just made sense after I witnessed the increase in the efficiency and productivity of not having to write every single html tag.</p>
