@@ -90,7 +90,7 @@
 <style lang="scss" scoped>
   @use "sass:color";
   @use "sass:list";
-  @use '~/assets/colors' as *;
+  @use '@app/assets/colors' as *;
 
   .nued-notification {
     font-weight: 300;

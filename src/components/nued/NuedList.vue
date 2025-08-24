@@ -22,7 +22,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @use '~/assets/colors' as *;
+  @use '@app/assets/colors' as *;
 
   .nued-list-wrapper {
     background: transparent;

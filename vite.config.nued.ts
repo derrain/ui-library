@@ -34,7 +34,16 @@ export default defineConfig({
   resolve: {
     alias: {
       '~': path.resolve(__dirname, 'src'),
-      '~~': path.resolve(__dirname, '.')
+      '~~': path.resolve(__dirname, '.'),
+      '@app': path.resolve(__dirname, 'app')
+    }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+        loadPaths: [path.resolve(__dirname, 'app/assets')]
+      }
     }
   }
 })

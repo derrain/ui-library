@@ -76,7 +76,7 @@
 
 <style lang="scss" scoped>
   @use "sass:color";
-  @use '~/assets/colors' as *;
+  @use '@app/assets/colors' as *;
 
   .nued-list-item {
     background: $white;
