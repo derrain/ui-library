@@ -33,6 +33,8 @@
         text-decoration: none;
 
         h1 {
+          font-size: 1.25rem;
+          font-weight: 100;
           margin: 0;
           padding: 0;
 
@@ -40,7 +42,12 @@
             &.special-letter {
               color: $primary;
               font-size: 2rem;
+              font-weight: 500;
             }
+          }
+
+          @media screen and (min-width: 768px) {
+            font-size: 2rem;
           }
         }
       }

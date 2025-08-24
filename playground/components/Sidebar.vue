@@ -9,14 +9,27 @@
   const routeIcons = {
     '/': 'home-alt',
     '/about': 'info-alt',
+    '/card': 'card',
+    '/datepicker': 'calendar-alt',
+    '/dropdown': 'dropdown-alt',
     '/version-updates': 'history',
+    '/accordion': 'accordion',
     '/alert': 'alarm-alt',
     '/button': 'cursor-alt',
+    '/carousel': 'carousel-alt',
     '/icon': 'star-alt',
     '/input': 'textbox-alt',
+    '/checkbox': 'checkbox-alt',
     '/layout': 'layout-alt',
     '/list': 'list-alt',
     '/notification': 'notification-alt',
+    '/pagination': 'pagination',
+    '/progress-bar': 'spinner',
+    '/radio-button': 'radio-alt',
+    '/switch': 'switch-alt',
+    '/table': 'table-alt',
+    '/textarea': 'textarea',
+    '/timepicker': 'clock-alt',
   };
 
   // Dynamically get all pages except the 'Home' page
@@ -64,23 +77,23 @@
 
   aside {
     background: $darkgrey-1;
-    width: 60px;
-    height: 100vh;
+    width: 85px;
+    height: calc(100vh - 60px);
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 62px;
+    padding-top: 60px;
     transition: width .3s ease;
-    overflow-x: hidden;
-    overflow-y: auto;
 
     ul {
       flex-grow: 1;
       margin: 0;
       padding: 0;
       list-style: none;
+      overflow-x: hidden;
+      overflow-y: auto;
 
       li {
         display: block;
@@ -90,7 +103,7 @@
           font-size: 1.2rem;
           font-weight: 400;
           display: block;
-          padding: 1.25rem;
+          padding: 1.25rem 1px;
           text-decoration: none;
 
           &.active {
@@ -99,9 +112,16 @@
           }
 
           .nav-link--item {
-            display: inline-flex;
-            gap: 1rem;
+            font-size: .75rem;
+            display: grid;
             align-items: center;
+            text-align: center;
+
+            @media screen and (min-width: 768px) {
+              font-size: 1.195rem;
+              display: inline-flex;
+              gap: 1rem;
+            }
           }
 
           @media screen and (min-width: 768px) {
