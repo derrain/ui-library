@@ -1,1 +1,1 @@
-<teamplate></teamplate>
+<template></template>
