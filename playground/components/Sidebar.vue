@@ -10,6 +10,8 @@
     '/': 'home-alt',
     '/about': 'info-alt',
     '/card': 'card',
+    '/datepicker': 'calendar-alt',
+    '/dropdown': 'dropdown-alt',
     '/version-updates': 'history',
     '/accordion': 'accordion',
     '/alert': 'alarm-alt',
@@ -25,6 +27,9 @@
     '/progress-bar': 'spinner',
     '/radio-button': 'radio-alt',
     '/switch': 'switch-alt',
+    '/table': 'table-alt',
+    '/textarea': 'textarea',
+    '/timepicker': 'clock-alt',
   };
 
   // Dynamically get all pages except the 'Home' page
