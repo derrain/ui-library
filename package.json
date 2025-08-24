@@ -4,13 +4,15 @@
   "description": "A Nuxt 3 based UI component library",
   "author": "Derrain De Silva",
   "license": "MIT",
+  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "files": [
@@ -18,29 +20,29 @@
   ],
   "scripts": {
     "dev": "nuxt dev",
-    "build": "vite build --config vite.config.nued.ts && nuxt build",
-    "prepare": "npm run build",
+    "build:lib": "vite build -c vite.config.nued.ts",
+    "build": "npm run build:lib",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "nuxt": "^3.15.4",
-    "vue": "^3.5.13"
-  },
-  "dependencies": {
-    "@iconify-json/ph": "^1.2.2",
-    "@iconify/json": "^2.2.324",
-    "@iconify/vue": "^4.3.0",
-    "sass-embedded": "^1.85.1",
-    "vue-router": "^4.5.0"
+    "nuxt": "^4.0.3",
+    "vue": "^3.5.13",
+    "@iconify/vue": "^4.3.0"
   },
   "devDependencies": {
+    "nuxt": "^4.0.3",
+    "@iconify/vue": "^4.3.0",
     "@vitejs/plugin-vue": "^5.2.3",
     "typescript": "5.8.3",
     "vite": "^6.2.6",
-    "vite-plugin-css-injected-by-js": "^3.5.2",
     "vite-plugin-dts": "4.5.3",
     "vue": "^3.5.13",
-    "vue-tsc": "2.2.8"
+    "vue-tsc": "2.2.8",
+    "sass-embedded": "^1.85.1"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.17"
   },
   "publishConfig": {
     "access": "public"

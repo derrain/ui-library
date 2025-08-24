@@ -33,7 +33,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @use '../../../playground/assets/colors' as *;
+  @use '~/assets/colors' as *;
 
   .nued-row {
     width: 100%;

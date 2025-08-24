@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import dts from 'vite-plugin-dts';
-import cssInjected from 'vite-plugin-css-injected-by-js';
 
 export default defineConfig({
   build: {
@@ -13,14 +12,16 @@ export default defineConfig({
       formats: ['es', 'cjs']
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', '@iconify/vue'],
       output: {
         globals: {
           vue: 'Vue'
-        }
+        },
+        exports: 'named'
       }
     },
-    outDir: 'dist'
+    outDir: 'dist',
+    sourcemap: true
   },
   plugins: [
     vue(),
@@ -29,11 +30,11 @@ export default defineConfig({
       outDir: 'dist',
       tsconfigPath: path.resolve(__dirname, 'tsconfig.json')
     }),
-    cssInjected()
   ],
   resolve: {
     alias: {
-      '~': path.resolve(__dirname, 'src')
+      '~': path.resolve(__dirname, 'src'),
+      '~~': path.resolve(__dirname, '.')
     }
   }
 })

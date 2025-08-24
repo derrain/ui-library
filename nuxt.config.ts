@@ -2,6 +2,10 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+  srcDir: 'app/',
+  dir: {
+    public: 'public/'
+  },
   components: [
     {
       path: '~/components',
@@ -46,7 +50,17 @@ export default defineNuxtConfig({
       ]
     }
   },
-  srcDir: 'playground/',
+  nitro: {
+    
+  },
+  typescript: {
+    strict: true,
+    tsConfig: {
+      compilerOptions: {
+        moduleResolution: 'Bundler'
+      }
+    }
+  },
   runtimeConfig: {
     public: {
       NUXT_PUBLIC_GITHUB_USERNAME: process.env.NUXT_PUBLIC_GITHUB_USERNAME,
