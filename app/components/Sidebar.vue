@@ -2,6 +2,7 @@
   import { computed } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
   import NuedIcon from '~~/src/components/nued/NuedIcon.vue';
+  import { setLastNavEl } from '~~/src/composables/useNavFocus';
 
   const router = useRouter();
   const route = useRoute();
@@ -50,6 +51,17 @@
     { name: `What's New`, path: '/version-updates', icon: routeIcons['/version-updates'] || 'version-updates' },
     ...componentLinks.value
   ]);
+
+  function remember(e) {
+    const tgt = (e && e.currentTarget && e.currentTarget.nodeType === 1) ?
+      e.currentTarget :
+      (e?.target && e.target.closest) ?
+        e.target.closest('#side-nav a, [role="menuitem"]') :
+        null;
+    
+    if (tgt)
+      setLastNavEl(tgt);
+  }
 </script>
 
 <template>
@@ -61,7 +73,11 @@
         <router-link
           :to="link.path"
           :class="{ active: route.path === link.path }"
-          :title="link.name">
+          :title="link.name"
+          @focus="remember"
+          @click="remember"
+          @keydown.enter="remember"
+          role="menuitem">
           <span class="nav-link--item">
             <span><NuedIcon :name="link.icon" size="medium" /></span>
             <span>{{ link.name }}</span>
