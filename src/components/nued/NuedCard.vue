@@ -1,133 +1,116 @@
 <script lang="ts" setup>
-  import { computed, toRefs, onMounted } from 'vue';
+  import { computed, inject } from 'vue';
   import type { CardProps } from '../../types/card';
+  import { ButtonProps } from '~~/src/types/button';
+  import NuedButton from './NuedButton.vue';
+  import { CARD_GROUP_KEY } from './card.provide';
 
   const props = withDefaults(defineProps<CardProps>(), {
-    title: '',
-    body: '',
     imageSrc: '',
     imageAlt: '',
-    imageCrop: 'landscape',
-    imageWrapperPadding: '',
-    clampLines: 0,
-    isClickable: false,
-    clickEvent: undefined,
-    isLink: false,
-    href: '',
-    target: '_self',
-    rel: 'noopener noreferrer',
-    contentPadding: '',
+    title: '',
+    description: '',
+    onClick: undefined,
+    onButtonClick: undefined,
+    disabled: false,
   });
 
-  const effectiveIsClickable = computed(() => !!props.isClickable);
-  const effectiveIsLink = computed(() => !effectiveIsClickable.value && !!props.isLink);
-  
-  const wrapperTag = computed(() => (effectiveIsLink.value ? 'a' : 'div'));
-
-  const cardAttrs = computed(() => {
-    if (effectiveIsLink.value) {
-      return {
-        href: props.href || '#',
-        target: props.target,
-        rel: props.target === '_blank' ? (props.rel || 'noopener noreferrer') : props.rel
-      };
-    }
-
-    if (effectiveIsClickable.value) {
-      return {
-        role: 'button',
-        tabindex: 0,
-        'aria-label': props.title || 'Card'
-      };
-    }
-
-    return {};
+  const group = inject<any>(CARD_GROUP_KEY, {
+    clampLines: computed(() => 3),
+    clickMode: computed(() => 'none'),
+    buttonText: computed(() => 'View'),
+    buttonProps: computed<Partial<ButtonProps> | undefined>(() => undefined)
   });
 
-  const onRootClick = (e: MouseEvent) => {
-    if (effectiveIsClickable.value && typeof props.clickEvent === 'function') {
-      props.clickEvent(e);
+  const hasImage = computed(() => !!props.imageSrc);
+  const hasTitle = computed(() => !!props.title);
+  const hasDescription = computed(() => !!props.description);
+
+  const mergedButtonProps = computed<Partial<ButtonProps>>(() => ({
+    ...(group.buttonProps.value || {}),
+    ...(props.buttonProps || {})
+  }));
+
+  const effectiveButtonText = computed(() =>
+    props.buttonText ?? group.buttonText.value
+  );
+
+  const rootIsButtonCard = computed(() => group.clickMode.value === 'card');
+
+  const handleRootClick = () => {
+    if (group.clickMode.value === 'card' && props.onClick) {
+      props.onClick();
     }
   }
 
-  const onRootKeydown = (e: KeyboardEvent) => {
-    if (!effectiveIsClickable.value)
+  const handleKeydown = (e: KeyboardEvent) => {
+    if (group.clickMode.value !== 'card')
       return;
 
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-
-      if (typeof props.clickEvent === 'function')
-        props.clickEvent(e);
+      props.onClick?.();
     }
   }
 
-  const hasImage = computed(() => !!props.imageSrc);
+  const handleButtonClick = () => {
+    if (props.onButtonClick)
+      return props.onButtonClick();
 
-  const imageWrapStyle = computed(() => {
-    const ratio = props.imageCrop === 'square' ? '1 / 1' : '16 / 9';
-
-    return {
-      aspectRatio: ratio,
-      padding: props.imageWrapperPadding || undefined,
-      boxSizing: 'border-box' as const
-    };
-  });
-
-  const contentStyle = computed(() => ({
-    padding: props.contentPadding || undefined
-  }));
-
-  const bodyClampVars = computed(() => ({
-    '--nued-card-clamp': String(props.clampLines ?? 0)
-  }));
+    props.onClick?.();
+  }
 </script>
 
 <template>
   <component
-    :is="wrapperTag"
-    v-bind="cardAttrs"
-    :class="[
-      'nued-card',
-      { 'is-clickable': effectiveIsClickable }
-    ]"
-    @click="onRootClick"
-    @keydown="onRootKeydown">
+    class="nued-card"
+    :class="{
+      'is-card-action': rootIsButtonCard,
+      'is-disabled': disabled
+    }"
+    :role="rootIsButtonCard ? 'button' : undefined"
+    tabindex="0"
+    @click="handleRootClick"
+    @keydown="handleKeydown">
     <div
-      v-if="hasImage"
-      class="nued-card_image-wrap"
-      :style="imageWrapStyle">
+      class="nued-card--media"
+      v-if="hasImage">
       <img
-        class="nued-card--image"
         :src="imageSrc"
         :alt="imageAlt || ''"
         loading="lazy"
         decoding="async" />
     </div>
 
-    <div
-      class="nued-card--content"
-      :style="contentStyle">
-      <h3
-        v-if="title"
-        class="nued-card--title">
-        <slot name="title">
-          {{ title }}
-        </slot>
-      </h3>
+    <div class="nued-card--content">
+      <h4
+        class="nued-card--title"
+        v-if="hasTitle">
+        {{ title }}
+      </h4>
+
+      <p
+        class="nued-card--description"
+        :class="{
+          'is-clamped': (group.clampLines ?? 0) > 0
+        }"
+        :style="{
+          WebkitLineClamp: String(group.clampLines ?? 0)
+        }"
+        v-if="hasDescription">
+        {{ description }}
+      </p>
 
       <div
-        v-if="body"
-        class="nued-card--body"
-        :class="{ 'is-clamped': (clampLines ?? 0) > 0 }"
-        :style="bodyClampVars">
-        <slot>
-          {{ body }}
-        </slot>
-      </div>
-
-      <div class="nued-card--actions">
-        <slot name="actions"></slot>
+        class="nued-card--actions"
+        v-if="group.clickMode === 'button'">
+        <NuedButton
+          class="nued-card--button"
+          type="button"
+          @click.stop="handleButtonClick"
+          v-bind="mergedButtonProps">
+          {{ effectiveButtonText }}
+        </NuedButton>
       </div>
     </div>
   </component>
@@ -139,24 +122,25 @@
   .nued-card {
     background: $white;
     color: $black;
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px solid $darkgrey-1;
-    border-radius: 10px;
-    text-decoration: none;
+    height: 100%;
+    border-radius: 8px;
     overflow: hidden;
-    box-sizing: border-box;
+    text-decoration: none;
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / .4)
+      0 6px 14px rgb(0 0 0 / .6);
+    transition: box-shadow .2s ease, transform .15s ease;
 
-    &.is-clickable {
+    &.is-card-action:not(.is-disabled) {
       cursor: pointer;
-      transition: box-shadow .25s ease, transform .2s ease;
 
       &:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 6px 18px rgb(0 0 0 / .25);
+        box-shadow:
+          0 2px 6px rgb(0 0 0 / .6)
+          0 12px 22px rgb(0 0 0 / .8);
+        transform: translateY(-5px);
       }
 
       &:active {
@@ -164,62 +148,60 @@
       }
     }
 
-    .nued-card--image-wrap {
-      width: 100%;
-      max-width: 100%;
-      overflow: hidden;
-      box-sizing: border-box;
+    &.is-disabled {
+      opacity: .6;
+      pointer-events: none;
+    }
 
-      .nued-card--image {
+    &--media {
+      background: $lightgrey;
+      width: 100%;
+      max-height: 180px;
+      aspect-ratio: 1;
+      overflow: hidden;
+
+      img {
         width: 100%;
         height: 100%;
         display: block;
         object-fit: cover;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
       }
     }
 
-    .nued-card--content {
+    &--content {
       display: flex;
       flex-direction: column;
       flex: 1 1 auto;
       gap: .5rem;
-      box-sizing: border-box;
+      padding: 1rem;
 
       .nued-card--title {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         font-weight: 600;
         margin: 0;
-        line-height: 1.3;
+        line-height: 1.35;
       }
 
-      .nued-card--body {
-        color: $text-dark;
-        font-size: .95rem;
-        line-height: 1.5;
+      .nued-card--description {
+        color: $darkgrey-2;
+        margin: 0;
+        line-height: 1.55;
 
         &.is-clamped {
           display: -webkit-box;
-          -webkit-line-clamp: var(--nued-card-clamp, 2);
+          -webkit-line-clamp: var(--nued-card-clamp), 3;
+          line-clamp: var(--nued-card-clamp), 3;
           -webkit-box-orient: vertical;
+          text-overflow: ellipsis;
           overflow: hidden;
-        }
-
-        a {
-          color: $primary;
-
-          &:hover {
-            opacity: .85;
-          }
         }
       }
 
       .nued-card--actions {
-        display: flex;
+        width: 100%;
         margin-top: auto;
-        gap: .5rem;
-        flex-wrap: wrap;
+        padding-top: .25rem;
+        justify-content: center;
       }
     }
   }
