@@ -15,10 +15,10 @@
   });
 
   const ctx = {
-    clampLines: computed(() => props.clampLines),
+    clampLines: computed(() => Number(props.clampLines) || 0),
     clickMode: computed(() => props.clickMode),
     buttonText: computed(() => props.buttonText),
-    buttonProps: computed(() => props.buttonProps)
+    buttonProps: computed<Partial<ButtonProps> | undefined>(() => props.buttonProps)
   };
 
   provide(CARD_GROUP_KEY, ctx);

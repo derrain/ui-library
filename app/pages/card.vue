@@ -10,7 +10,7 @@
   const model = ref({
     // Card group props
     columns: 3,
-    clampLines: 3,
+    clampLines: 2,
     clickMode: 'none',
     gap: '1rem',
     groupButtonText: 'View',
@@ -64,6 +64,7 @@
       clickMode="none" // Choose between 'none' | 'card' | 'button'. Default is 'none'
       gap="1rem" // Gaps between cards
       buttonText="View" // Button text for all cards when clickMode="button"
+      :buttonProps="{ variant: 'primary', size: 'medium' }" // Set the NuedButton props as needed
     >
       <NuedCard
         imageSrc="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2474" // Image source URL
@@ -71,7 +72,8 @@
         title="Card Title" // Title that appears below the image
         description="Card description..." // Additional or extended information
         disabled="false" // If set to 'true', card will look disabled. Default is 'false'
-        buttonText="View" // Button text for individual cards
+        buttonText="View" // Button text for individual cards overriding Group Button Text value
+        :buttonProps="{ variant: 'primary', size: 'medium' }" // Override NuedButton props given to the CardGroup
         :onClick="() => console.log('Card clicked!')" // Handles card click functions
         :onButtonClick="() => console.log('Button clicked!')" // Handles button click functions
       />
@@ -93,7 +95,8 @@
         :clampLines="Number(props.clampLines)"
         :clickMode="props.clickMode"
         :gap="props.gap"
-        :buttonText="props.buttonText">
+        :buttonText="props.buttonText"
+        :buttonProps="{ variant: 'primary', size: 'medium' }">
         <NuedCard
           v-for="i in 6"
           :key="i"

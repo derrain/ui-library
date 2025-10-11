@@ -16,11 +16,14 @@
   });
 
   const group = inject<any>(CARD_GROUP_KEY, {
-    clampLines: computed(() => 3),
+    clampLines: computed(() => 2),
     clickMode: computed(() => 'none'),
     buttonText: computed(() => 'View'),
     buttonProps: computed<Partial<ButtonProps> | undefined>(() => undefined)
   });
+
+  const clampLines = computed(() => Number(group.clampLines?.value ?? 3));
+  const clickMode  = computed(() => group.clickMode?.value ?? 'none');
 
   const hasImage = computed(() => !!props.imageSrc);
   const hasTitle = computed(() => !!props.title);
@@ -92,10 +95,10 @@
       <p
         class="nued-card--description"
         :class="{
-          'is-clamped': (group.clampLines ?? 0) > 0
+          'is-clamped': clampLines > 0
         }"
         :style="{
-          WebkitLineClamp: String(group.clampLines ?? 0)
+          '--nued-car-clamp': String(clampLines)
         }"
         v-if="hasDescription">
         {{ description }}
@@ -103,7 +106,7 @@
 
       <div
         class="nued-card--actions"
-        v-if="group.clickMode === 'button'">
+        v-if="clickMode === 'button'">
         <NuedButton
           class="nued-card--button"
           type="button"
@@ -189,8 +192,8 @@
 
         &.is-clamped {
           display: -webkit-box;
-          -webkit-line-clamp: var(--nued-card-clamp), 3;
-          line-clamp: var(--nued-card-clamp), 3;
+          -webkit-line-clamp: var(--nued-card-clamp);
+          line-clamp: var(--nued-card-clamp);
           -webkit-box-orient: vertical;
           text-overflow: ellipsis;
           overflow: hidden;
