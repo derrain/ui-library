@@ -88,6 +88,7 @@
     <div class="nued-card--content">
       <h4
         class="nued-card--title"
+        :title="title"
         v-if="hasTitle">
         {{ title }}
       </h4>
@@ -100,6 +101,7 @@
         :style="{
           '--nued-car-clamp': String(clampLines)
         }"
+        :title="description"
         v-if="hasDescription">
         {{ description }}
       </p>
@@ -181,8 +183,12 @@
       .nued-card--title {
         font-size: 1.15rem;
         font-weight: 600;
+        width: 100%;
         margin: 0;
+        white-space: nowrap;
         line-height: 1.35;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .nued-card--description {
