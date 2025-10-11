@@ -33,8 +33,6 @@
 </template>
 
 <style lang="scss" scoped>
-  @use '@nued/styles/nued-colors' as *;
-
   .nued-column {
     width: 100%;
     padding: 1rem;

@@ -33,8 +33,6 @@
 </template>
 
 <style lang="scss" scoped>
-  @use '@nued/styles/nued-colors' as *;
-
   .nued-row {
     width: 100%;
     display: flex;
