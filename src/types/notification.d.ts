@@ -3,8 +3,9 @@ export interface NotificationProps {
   message?: string;
   showIcon?: boolean;
   iconName?: string;
-  position?: "left" | "center" | "right";
-  variant?: "info" | "success" | "warning" | "danger";
+  position?: 'left' | 'right';
+  variant?: 'info' | 'success' | 'warning' | 'danger';
   dismissible?: boolean;
   autoDismissInterval?: number;
+  gap?: string;
 }

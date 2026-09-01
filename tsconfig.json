@@ -6,7 +6,6 @@
     "jsx": "preserve",
     "strict": true,
     "types": ["nuxt", "node", "vite/client"],
-    "baseUrl": ".",
     "paths": {
       "~/*": ["./playground/*"],
       "@/*": ["./playground/*"],
